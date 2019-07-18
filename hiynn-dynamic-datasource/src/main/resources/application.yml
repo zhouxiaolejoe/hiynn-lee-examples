@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    test1:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.238.101:3306/test1?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      type: com.alibaba.druid.pool.DruidDataSource
+    test2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.238.101:3306/test2?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      type: com.alibaba.druid.pool.DruidDataSource
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd hh:mm:ss                    #配置默认Date转换格式(@JsonFormat覆盖此配置)
+  redis:
+    database: 12
+    port: 6339
+    password: 123456
+    host: 192.168.238.101
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+#  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
+#    location:
+logging:
+#  level.org.springframework.web: debug                 #配置指定包使用debug日志
+#  level.com.dynamic.datasource.mapper: debug
+  config: classpath:logback-spring.xml                  #配置日志配置文件位置
+#  path: /var/logs/dynamic_db                           #配置日志存放位置(由logback-spring.xml文件内配置)
+server:
+  servlet:
+    context-path: /dynamic_db                           #配置项目访问路径
+  port: 8080
+#  address: 10.0.92.127
+mybatis:
+  mapper-locations: classpath:mapper/*.xml              #mybatis mapper.xml文件位置
+#  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
+  config-location: classpath:mybatis-config.xml         #配置mybatis配置文件
+task:
+  corePoolSize: 10
+  maxPoolSize: 200
+  queueCapacity: 10
+management:
+  server:
+    port: 9000                                          #配置监控端口
+  endpoint:
+    shutdown:
+      enabled: true                                     #配置远程关闭应用
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /monitor                               #配置监控路径
+      exposure:
+        include: '*'                                    #开启所有端点
+info:
+  name: hiynn-dynamic-datasource
+  version: 1.0.0

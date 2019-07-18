@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /dynamic_db                           #配置项目访问路径
+  port: 8081
