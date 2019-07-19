@@ -32,12 +32,12 @@ public class ScheduleTask {
 	* @Param []
 	* @return void
 	**/
-	@Scheduled(cron = "0/2 * * * * *")
-	@Async
-	public void scheduled(){
-		log.info("=====>>>>>使用cron  {}",System.currentTimeMillis());
-		messagingTemplate.convertAndSend("/topic/public", testService.findUserById(1));
-	}
+//	@Scheduled(cron = "0/2 * * * * *")
+//	@Async
+//	public void scheduled(){
+//		log.info("=====>>>>>使用cron  {}",System.currentTimeMillis());
+//		messagingTemplate.convertAndSend("/topic/public", testService.findUserById(1));
+//	}
 //	@Scheduled(fixedRate = 5000)
 //	@Async
 //	public void scheduled1() {
