@@ -16,6 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +50,14 @@ public class TestController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
 	})
-	public ResultBuilder<TRole> testFindRole(@PathVariable("id") Integer id){
+	public ResultBuilder<TRole> testFindRole(@PathVariable("id") Integer id, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") == null) {
+			session.setAttribute("user", "zhangsan");
+			log.info("The session does not exist");
+		} else {
+			log.info("The session is"+"["+session.getAttribute("user")+"]");
+		}
 		return ResultBuilder.success(testService.findRoleById(id));
 	}
 

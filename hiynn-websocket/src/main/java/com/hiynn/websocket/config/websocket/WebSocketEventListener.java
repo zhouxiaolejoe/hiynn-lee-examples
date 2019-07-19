@@ -19,7 +19,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 **/
 @Component
 public class WebSocketEventListener {
-    int i=0;
+
     private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
 
     @Autowired
@@ -33,10 +33,7 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        String username = (String) headerAccessor.getSessionAttributes().get("username");
-        if (username != null) {
-            logger.info("User Disconnected : " + username);
-        }
+            logger.info("Web socket connection Disconnected");
 
     }
 }
