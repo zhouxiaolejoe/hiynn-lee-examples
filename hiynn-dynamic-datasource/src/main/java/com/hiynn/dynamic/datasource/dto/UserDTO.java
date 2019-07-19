@@ -5,12 +5,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel("com.hiynn.dynamic.datasource.dto.UserDTO")
 public class UserDTO {
-	@NotEmpty(message = "id不能为空",groups = GroupVaild.UpdateGroup.class)
+
+	@NotNull(message = "id不能为空",groups = GroupVaild.UpdateGroup.class)
+	@Min(value = 1,message = "id必须大于0",groups = GroupVaild.UpdateGroup.class)
 	@ApiModelProperty(value = "用户id")
 	private Integer id;
 
