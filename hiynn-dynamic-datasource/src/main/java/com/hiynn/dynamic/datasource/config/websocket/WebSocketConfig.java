@@ -28,14 +28,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setHandshakeHandler(new DefaultHandshakeHandler(){
-                    @Override
-                    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
-                        Object o = attributes.get("name");
-                        return new FastPrincipal(o.toString());
-                    }
-                })
-                .addInterceptors()
+//                .setHandshakeHandler(new DefaultHandshakeHandler(){
+//                    @Override
+//                    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
+//                        Object o = attributes.get("name");
+//                        return new FastPrincipal(o.toString());
+//                    }
+//                })
+//                .addInterceptors()
                 .withSockJS();
     }
 

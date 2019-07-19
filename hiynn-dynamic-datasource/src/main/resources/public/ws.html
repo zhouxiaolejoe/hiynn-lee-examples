@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Spring Boot+WebSocket+广播式</title>
+    <title>WebSocket</title>
 
 </head>
-<body onload="disconnect()">
+<body >
 <noscript><h2 style="color: #ff0000">貌似你的浏览器不支持websocket</h2></noscript>
 <div>
     <div>
@@ -38,29 +38,29 @@
             setConnected(true);
             console.log('开始进行连接Connected: ' + frame);
             stompClient.subscribe('/topic/public', function(respnose){ //4
-                showResponse(JSON.parse(respnose.body).responseMessage);
+                showResponse(JSON.parse(respnose.body));
             });
         });
     }
 
 
-    // function disconnect() {
-    //     if (stompClient != null) {
-    //         stompClient.disconnect();
-    //     }
-    //     setConnected(false);
-    //     console.log("Disconnected");
-    // }
-    //
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+    }
+
     function sendName() {
         var name = $('#name').val();
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({ 'name': name }));//5
     }
-    //
-    // function showResponse(message) {
-    //     var response = $("#response");
-    //     response.html(message);
-    // }
+
+    function showResponse(message) {
+        var response = $("#response");
+        response.html(message);
+    }
 </script>
 </body>
 </html>

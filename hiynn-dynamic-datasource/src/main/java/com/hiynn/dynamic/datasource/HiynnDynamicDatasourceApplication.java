@@ -4,8 +4,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+
 
 /**
 * @Description  exclude = DataSourceAutoConfiguration.class 排除数据库自动init
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 **/
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @MapperScan("com.hiynn.dynamic.datasource.mapper")
+@Controller
 public class HiynnDynamicDatasourceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HiynnDynamicDatasourceApplication.class, args);
 	}
-
 }

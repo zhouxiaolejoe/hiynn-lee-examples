@@ -30,6 +30,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://joe:123456@192.168.238.101:27017/user_info?authSource=admin&authMechanism=SCRAM-SHA-1 #mongodb3.0以上使用这种连接方式
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+
 #  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
 #    location:
 logging:
