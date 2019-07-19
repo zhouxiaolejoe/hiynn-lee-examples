@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.schedule;
+package com.hiynn.dynamic.datasource.config.schedule;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
