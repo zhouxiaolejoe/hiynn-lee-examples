@@ -1,0 +1,8 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+task:
+  corePoolSize: 10
+  maxPoolSize: 200
+  queueCapacity: 10

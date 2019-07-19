@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 **/
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @MapperScan("com.hiynn.dynamic.datasource.mapper")
-@Controller
 public class HiynnDynamicDatasourceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HiynnDynamicDatasourceApplication.class, args);
