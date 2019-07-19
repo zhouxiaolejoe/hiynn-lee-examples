@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>WebSocket</title>
@@ -15,12 +14,13 @@
     <div id="conversationDiv">
         <label>输入你的名字</label><input type="text" id="name" />
         <button id="sendName" onclick="sendName();">发送</button>
-        <p id="response"></p>
+        <div id="response">
+        </div>
     </div>
 </div>
-<script th:src="@{sockjs.min.js}"></script>
-<script th:src="@{stomp.min.js}"></script>
-<script th:src="@{jquery-3.4.1.min.js}"></script>
+<script src="sockjs.min.js"></script>
+<script src="stomp.min.js"></script>
+<script src="jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     var stompClient = null;
 
@@ -32,13 +32,13 @@
     }
 
     function connect() {
-        var socket = new SockJS('/ws'); //1
+        var socket = new SockJS('http://10.0.92.127:8080/dynamic_db/ws'); //1
         stompClient = Stomp.over(socket);//2
         stompClient.connect({}, function(frame) {//3
             setConnected(true);
             console.log('开始进行连接Connected: ' + frame);
             stompClient.subscribe('/topic/public', function(respnose){ //4
-                showResponse(JSON.parse(respnose.body));
+                showResponse(respnose.body);
             });
         });
     }
@@ -54,12 +54,12 @@
 
     function sendName() {
         var name = $('#name').val();
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({ 'name': name }));//5
+        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(name));//5
     }
 
     function showResponse(message) {
-        var response = $("#response");
-        response.html(message);
+        console.log("["+message+"]");
+        $("#response").append("<font color='red'>"+message+"</font><br/>")
     }
 </script>
 </body>

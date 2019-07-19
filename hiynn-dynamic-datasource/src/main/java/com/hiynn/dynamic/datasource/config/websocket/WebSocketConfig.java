@@ -27,7 +27,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws")
+        registry.addEndpoint("/ws")//项目设置名称在客户端也要加上
+		        .setAllowedOrigins("*")//跨域支持
 //                .setHandshakeHandler(new DefaultHandshakeHandler(){
 //                    @Override
 //                    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
@@ -57,16 +58,16 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          * */
     }
 }
-class FastPrincipal implements Principal {
-
-    private final String name;
-
-    public FastPrincipal(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-}
+//class FastPrincipal implements Principal {
+//
+//    private final String name;
+//
+//    public FastPrincipal(String name) {
+//        this.name = name;
+//    }
+//
+//    @Override
+//    public String getName() {
+//        return name;
+//    }
+//}

@@ -63,7 +63,7 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("Spring Boot 开发使用 Swagger2 构建RESTful API")
+                .title("Swagger2 Restful API")
                 //创建人
                 .contact(new Contact("hiynn", "http://www.baidu.com", ""))
                 //版本号

@@ -1,6 +1,9 @@
 package com.hiynn.dynamic.datasource.schedule;
 
+import com.hiynn.dynamic.datasource.service.TestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,6 +17,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class ScheduleTask {
+
+	@Autowired
+	private SimpMessageSendingOperations messagingTemplate;
+
+	@Autowired
+	TestService testService;
+
+
 	/**
 	* @Description  @Async多线程定时任务
 	* @Author ZhouXiaoLe
@@ -21,11 +32,12 @@ public class ScheduleTask {
 	* @Param []
 	* @return void
 	**/
-//	@Scheduled(cron = "0/5 * * * * *")
-//	@Async
-//	public void scheduled(){
-//		log.info("=====>>>>>使用cron  {}",System.currentTimeMillis());
-//	}
+	@Scheduled(cron = "0/2 * * * * *")
+	@Async
+	public void scheduled(){
+		log.info("=====>>>>>使用cron  {}",System.currentTimeMillis());
+		messagingTemplate.convertAndSend("/topic/public", testService.findUserById(1));
+	}
 //	@Scheduled(fixedRate = 5000)
 //	@Async
 //	public void scheduled1() {
