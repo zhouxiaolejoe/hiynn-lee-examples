@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.swagger;
+package com.hiynn.dynamic.datasource.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

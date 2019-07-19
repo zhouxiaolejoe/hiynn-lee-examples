@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.filter;
+package com.hiynn.dynamic.datasource.config.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
