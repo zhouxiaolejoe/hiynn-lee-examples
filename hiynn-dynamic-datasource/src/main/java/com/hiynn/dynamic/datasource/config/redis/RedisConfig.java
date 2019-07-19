@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.config;
+package com.hiynn.dynamic.datasource.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
