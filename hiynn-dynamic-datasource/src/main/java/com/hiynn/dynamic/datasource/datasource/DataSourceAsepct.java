@@ -27,7 +27,7 @@ public class DataSourceAsepct {
 
     //加载数据源(切入类和方法、@annotation只能作用于方法)
 //    @Pointcut("@annotation(com.dynamic.datasource.datasource.DataSource)")
-    @Pointcut("execution(public * com.hiynn.dynamic.datasource.service.*.*(..))")
+    @Pointcut("execution(public * com.hiynn.dynamic.datasource.*.*.*(..))")
     public void pointCut(){ }
 	/**
 	* @Description (获取目标类和目标方法)

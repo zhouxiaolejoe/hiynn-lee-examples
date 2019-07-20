@@ -13,5 +13,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @Slf4j
 public class TUserInfoMapperTest {
+//	@Autowired
+//	TUserInfoMapper tUserInfoMapper;
+//
+//	@Test
+//	public void countByExample(){
+//		TUserInfoExample example = new TUserInfoExample();
+//		long count = tUserInfoMapper.countByExample(example);
+//		log.info(String.valueOf(count));
+//	}
 
 }

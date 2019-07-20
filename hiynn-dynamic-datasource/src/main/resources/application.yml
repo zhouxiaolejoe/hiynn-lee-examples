@@ -51,11 +51,11 @@ server:
   port: 8080
 #  address: 10.0.92.127
 mybatis:
-  mapper-locations: classpath:mapper/*.xml              #mybatis mapper.xml文件位置
+  mapper-locations: classpath:mapper/*.xml,classpath:generator/mapper/*.xml           #mybatis mapper.xml文件位置
 #  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
   config-location: classpath:mybatis-config.xml         #配置mybatis配置文件
-  configuration:
-    map-underscore-to-camel-case: true                  #开启驼峰转换
+#  configuration:
+#    map-underscore-to-camel-case: true                  #开启驼峰转换不可与mybatis-config.xml同时指定
 task:
   corePoolSize: 10
   maxPoolSize: 200
