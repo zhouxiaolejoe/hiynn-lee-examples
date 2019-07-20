@@ -24,7 +24,6 @@ public class MyHandshakeInterceptor implements HandshakeInterceptor {
 		map.put("name", "8888");
 		return true;
 	}
-
 	@Override
 	public void afterHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Exception e) {
 

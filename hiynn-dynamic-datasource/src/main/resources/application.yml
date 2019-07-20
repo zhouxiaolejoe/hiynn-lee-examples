@@ -54,6 +54,8 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml              #mybatis mapper.xml文件位置
 #  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
   config-location: classpath:mybatis-config.xml         #配置mybatis配置文件
+  configuration:
+    map-underscore-to-camel-case: true                  #开启驼峰转换
 task:
   corePoolSize: 10
   maxPoolSize: 200
@@ -74,4 +76,3 @@ management:
 info:
   name: hiynn-dynamic-datasource
   version: 1.0.0
-debug: true
