@@ -18,5 +18,8 @@ public class TestFile {
 		String c = "c";
 		String format = String.format("%s%s%s", a, b, c);
 		System.err.println(format);
+		String fileName  = "1.json";
+		String substring = fileName.substring(fileName.lastIndexOf("."));
+		System.err.println(substring);
 	}
 }

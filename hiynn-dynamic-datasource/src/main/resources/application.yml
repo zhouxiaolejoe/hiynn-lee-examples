@@ -86,3 +86,6 @@ management:
 info:
   name: hiynn-dynamic-datasource
   version: 1.0.0
+upload:
+  file:
+    path: D:\var\log\
