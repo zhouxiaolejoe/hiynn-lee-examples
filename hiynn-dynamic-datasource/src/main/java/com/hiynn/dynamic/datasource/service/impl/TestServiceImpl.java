@@ -51,4 +51,9 @@ public class TestServiceImpl implements TestService {
 		return userDTO;
 
 	}
+
+	@Override
+	public List<TUser> findUserAll() {
+		return userMapper.findUserAll();
+	}
 }

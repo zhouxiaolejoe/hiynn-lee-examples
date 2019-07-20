@@ -34,4 +34,6 @@ public interface TestService {
 
     @DataSource(DataSourceEnum.DB1)
     UserDTO updatetUser(UserDTO userDTO);
+    @DataSource(DataSourceEnum.DB1)
+    List<TUser> findUserAll();
 }

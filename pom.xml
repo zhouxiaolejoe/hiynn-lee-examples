@@ -16,6 +16,7 @@
     <description>Demo project for Spring Boot</description>
     <modules>
         <module>hiynn-dynamic-datasource</module>
+        <module>hiynn-websocket</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
@@ -78,7 +79,6 @@
                 <artifactId>mybatis-generator-core</artifactId>
                 <version>${mybatis-generator.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

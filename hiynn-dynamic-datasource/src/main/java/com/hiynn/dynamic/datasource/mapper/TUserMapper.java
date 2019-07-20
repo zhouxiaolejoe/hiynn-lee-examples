@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface TUserMapper {
 	TUser findUserById(@Param("id") Integer id);
+	List<TUser> findUserAll();
 	int insertUser(UserDTO userDTO);
 	int updatetUser(UserDTO userDTO);
 }

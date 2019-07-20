@@ -25,4 +25,7 @@
         </set>
         where id = #{id}
     </update>
+    <select id="findUserAll" resultType="tUser">
+        select * from t_user
+    </select>
 </mapper>
