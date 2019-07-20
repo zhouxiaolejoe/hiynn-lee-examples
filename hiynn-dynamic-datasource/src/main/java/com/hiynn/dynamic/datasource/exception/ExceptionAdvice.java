@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +76,18 @@ public class ExceptionAdvice {
         return ResultBuilder.fail(null,e.getMessage());
     }
 
+    /**
+    * @Description  文件异常
+    * @Author ZhouXiaoLe
+    * @Date  2019/7/17  16:35
+    * @Param [request, ex]
+    * @return com.hiynn.dynamic.datasource.untils.ResultBuilder
+    **/
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResultBuilder MaxUploadSizeExceededException(HttpServletRequest request, Throwable ex) {
+        return ResultBuilder.fail(null,"上传文件不能大于10M");
+    }
     /**
     * @Description  捕捉所有异常
     * @Author ZhouXiaoLe

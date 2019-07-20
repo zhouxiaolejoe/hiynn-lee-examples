@@ -1,10 +1,7 @@
 package com.hiynn.dynamic.datasource.controller;
 
-import com.hiynn.dynamic.datasource.entity.TRole;
 import com.hiynn.dynamic.datasource.untils.ResultBuilder;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotEmpty;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.UUID;
 
@@ -24,7 +22,7 @@ import java.util.UUID;
 @Api(tags = "文件上传")
 public class FileUploadController {
 
-	public static final String uploadPath = "C:\\var\\log\\";
+	public static final String uploadPath = "/var/log/";
 
 	@PostMapping("/upload")
 	public ResultBuilder handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
@@ -36,6 +34,12 @@ public class FileUploadController {
 		FileUtils.copyInputStreamToFile(file.getInputStream(),new File(filePath));
 //		file.transferTo(new File("C:\\var\\log\\1.txt"));
 		return  ResultBuilder.success(filePath);
+	}
+	@PostMapping("/download")
+	public ResultBuilder downloadFile(HttpServletRequest request, HttpServletResponse response){
+
+
+		return  ResultBuilder.success();
 	}
 
 }
