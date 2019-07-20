@@ -122,13 +122,12 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.7</version>
                 <configuration>
+                    <!-- 指定 generator-config.xml位置 默认在src/main/resources//generatorConfig.xml-->
+                    <configurationFile>src/main/resources/generator/generator-config.xml</configurationFile>
                     <!--允许移动生成的文件 -->
                     <verbose>true</verbose>
                     <!-- 是否覆盖 -->
                     <overwrite>true</overwrite>
-                    <!-- 指定 generator-config.xml位置 默认在src/main/resources//generatorConfig.xml-->
-                    <configurationFile>src/main/resources/generator/generator-config.xml</configurationFile>
-
                 </configuration>
 
                 <dependencies>

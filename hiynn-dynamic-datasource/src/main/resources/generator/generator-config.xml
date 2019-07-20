@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="DB2Tables" targetRuntime="MyBatis3">
+
         <!--去掉注释-->
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
@@ -23,18 +24,32 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <!--sql映射文件生成的位置 mapper.xml-->
+
+
+        <!--指定DaoMapper生成的位置 mapper.java-->
         <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources/generator/">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <!--指定DaoMapper生成的位置 mapper.java-->
+        <!--table是指定每个表的生成策略-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.hiynn.dynamic.datasource.generator.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!--table是指定每个表的生成策略-->
-        <table tableName="t_user" domainObjectName="TUserInfo"></table>
+
+        <!--sql映射文件生成的位置 mapper.xml-->
+        <table tableName="t_user" domainObjectName="TUserInfo">
+<!--            &lt;!&ndash;使用数据库字段作为属性&ndash;&gt;-->
+<!--            <property name ="useActualColumnNames" value ="true"/>-->
+<!--            &lt;!&ndash;指定自动生成的键的属性(来自标识字段或序列)。如果指定此元素，MyBatis Generator（MBG）将在SQL映射中生成的<insert>元素内生成相应的<selectKey>元素。此元素是<table>元素的可选子元素。&ndash;&gt;-->
+<!--            <generatedKey column ="id" sqlStatement ="MySQL" identity="true"/>-->
+<!--            &lt;!&ndash;将数据库列值映射为属性&ndash;&gt;-->
+<!--            <columnOverride column="reg_time" property="time" />-->
+<!--            &lt;!&ndash;忽略字段&ndash;&gt;-->
+<!--            <ignoreColumn column="username" />-->
+<!--            &lt;!&ndash;无论实际数据类型如何，列都将被视为jdbcType&ndash;&gt;-->
+<!--            <columnOverride column="reg_time" jdbcType="VARCHAR" />-->
+        </table>
         <!--<table tableName="group_teacher_rel" domainObjectName="Group_teacher_rel"></table>-->
         <!--<table tableName="groups" domainObjectName="Groups"></table>-->
         <!--<table tableName="specialty" domainObjectName="Specialty"></table>-->
