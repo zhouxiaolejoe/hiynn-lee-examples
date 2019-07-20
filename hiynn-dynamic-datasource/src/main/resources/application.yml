@@ -38,6 +38,12 @@ spring:
     redis:
       namespace: spring:session                         #spring session 命名空间
     timeout: 2000                                       #spring session 过期事件
+  application:
+    name: hiynn-dynamic-datasource                      #应用名称
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9809                      #admin 服务端地址
 #  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
 #    location:
 logging:
@@ -75,4 +81,4 @@ management:
         include: '*'                                    #开启所有端点
 info:
   name: hiynn-dynamic-datasource
-  version: 1.0.0
+  version: 1.0.0cl
