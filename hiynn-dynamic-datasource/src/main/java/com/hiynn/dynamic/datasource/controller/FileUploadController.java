@@ -31,6 +31,7 @@ public class FileUploadController {
 	public ResultBuilder uploadFile(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
 		return  ResultBuilder.success(FileUtil(request,file));
 	}
+
 	@PostMapping("/uploads")
 	@ApiOperation(value = "测试多文件上传",httpMethod = "POST",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResultBuilder uploadsFile(HttpServletRequest request, @RequestParam("files") MultipartFile[] multipartFile) throws IOException {
