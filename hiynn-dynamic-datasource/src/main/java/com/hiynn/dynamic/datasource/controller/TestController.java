@@ -82,9 +82,9 @@ public class TestController {
 	@GetMapping("/testUrlParam/{id}")
 	@ApiOperation(value = "测试url传参数",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Long", paramType = "path"),
+			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path"),
 			@ApiImplicitParam(name = "date", value = "日期", required = false, dataType = "string", paramType = "query")})
-	public ResultBuilder<List> testUrlParam(@PathVariable("id") Long id, String date){
+	public ResultBuilder<List> testUrlParam(@PathVariable("id") Integer id, String date){
 		return ResultBuilder.success(Arrays.asList(id,date));
 	}
 
