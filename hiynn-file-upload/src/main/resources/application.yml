@@ -1,3 +1,20 @@
 upload:
   file:
     path: D:\var\log\
+server:
+  port: 8081
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9980
+  application:
+    name: hiynn-file-upload
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

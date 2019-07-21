@@ -1,4 +1,10 @@
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9980
+  application:
+      name: hiynn-websocket
   thymeleaf:
     mode: HTML5
     encoding: utf-8
@@ -6,3 +12,13 @@ task:
   corePoolSize: 10
   maxPoolSize: 200
   queueCapacity: 10
+server:
+  port: 8082
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
