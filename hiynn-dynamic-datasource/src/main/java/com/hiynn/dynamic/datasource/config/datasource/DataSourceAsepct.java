@@ -25,9 +25,9 @@ import java.lang.reflect.Method;
 @Slf4j
 public class DataSourceAsepct {
 
-    //加载数据源(切入类和方法、@annotation只能作用于方法)
-//    @Pointcut("@annotation(com.dynamic.datasource.datasource.DS)")
-    @Pointcut("execution(public * com.hiynn.dynamic.datasource.*.*.*(..))")
+    //加载数据源(切入类和方法、@annotation只能作用于方法) 切入所有的service
+	//@Pointcut("@annotation(com.dynamic.datasource.datasource.DS)")
+    @Pointcut("execution(public * com.hiynn.dynamic.datasource..service.*.*(..))")
     public void pointCut(){ }
 	/**
 	* @Description (获取目标类和目标方法)

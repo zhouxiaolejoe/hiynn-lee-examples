@@ -4,6 +4,8 @@ import com.hiynn.dynamic.datasource.dto.UserDTO;
 import com.hiynn.dynamic.datasource.dto.groupsvalid.GroupVaild;
 import com.hiynn.dynamic.datasource.entity.TRole;
 import com.hiynn.dynamic.datasource.entity.TUser;
+import com.hiynn.dynamic.datasource.generator.entity.TUserInfo;
+import com.hiynn.dynamic.datasource.generator.service.TUserInfoService;
 import com.hiynn.dynamic.datasource.okhttp3.OkHttpUtil;
 import com.hiynn.dynamic.datasource.service.TestService;
 import com.hiynn.dynamic.datasource.untils.FastJsonUtils;
@@ -35,6 +37,8 @@ import java.util.Map;
 public class TestController {
 	@Autowired
 	TestService testService;
+	@Autowired
+	TUserInfoService userInfoService;
 
 	@GetMapping("/testFindUser/{id}")
 	@ApiOperation(value = "测试查找用户",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
@@ -42,6 +46,8 @@ public class TestController {
 			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
 	})
 	public ResultBuilder<TUser> testFindUser(@PathVariable("id") Integer id){
+		TUserInfo userInfo = userInfoService.selectByPrimaryKey(id);
+		log.info(FastJsonUtils.getBeanToJson(userInfo));
 		return ResultBuilder.success(testService.findUserById(id));
 	}
 

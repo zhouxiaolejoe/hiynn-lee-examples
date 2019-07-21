@@ -7,14 +7,12 @@ import com.hiynn.dynamic.datasource.entity.TUser;
 import com.hiynn.dynamic.datasource.mapper.TRoleMapper;
 import com.hiynn.dynamic.datasource.mapper.TUserMapper;
 import com.hiynn.dynamic.datasource.service.TestService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-//@DS(DSEnum.TEST2)
 public class TestServiceImpl implements TestService {
 	@Autowired
 	private TUserMapper userMapper;
@@ -25,7 +23,6 @@ public class TestServiceImpl implements TestService {
 	public TUser findUserById(Integer id)  {
 		return userMapper.findUserById(id);
 	}
-
 	@Override
 	public TRole findRoleById(Integer id){
 		return roleMapper.findRoleById(id);

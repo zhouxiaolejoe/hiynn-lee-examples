@@ -1,8 +1,10 @@
 package com.hiynn.dynamic.datasource.generator.service;
 
 
+
 import com.hiynn.dynamic.datasource.config.datasource.DS;
 import com.hiynn.dynamic.datasource.config.datasource.DSEnum;
+import com.hiynn.dynamic.datasource.generator.entity.TUserInfo;
 import com.hiynn.dynamic.datasource.generator.entity.TUserInfoExample;
 
 /**
@@ -11,4 +13,5 @@ import com.hiynn.dynamic.datasource.generator.entity.TUserInfoExample;
 @DS(DSEnum.DB1)
 public interface TUserInfoService {
 	long countByExample(TUserInfoExample example);
+	TUserInfo selectByPrimaryKey(Integer id);
 }
