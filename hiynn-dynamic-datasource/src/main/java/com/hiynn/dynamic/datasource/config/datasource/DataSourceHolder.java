@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.datasource;
+package com.hiynn.dynamic.datasource.config.datasource;
 
 /**
 * @Description
@@ -11,7 +11,7 @@ public class DataSourceHolder {
 
     private static final ThreadLocal<String> DS_HOLDER = new ThreadLocal<>();
 
-    public static void setDataSource(DataSourceEnum dataSource) {
+    public static void setDataSource(DSEnum dataSource) {
 
         DS_HOLDER.set(dataSource.getName());
     }

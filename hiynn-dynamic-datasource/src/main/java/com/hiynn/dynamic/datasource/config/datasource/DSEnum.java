@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.datasource;
+package com.hiynn.dynamic.datasource.config.datasource;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +12,10 @@ import lombok.Getter;
 **/
 @AllArgsConstructor
 @Getter
-public enum DataSourceEnum {
+public enum DSEnum {
 
     DEFAULT("db1"),
     DB1("db1"),
     DB2("db2");
-    private String name;
+    public String name;
 }

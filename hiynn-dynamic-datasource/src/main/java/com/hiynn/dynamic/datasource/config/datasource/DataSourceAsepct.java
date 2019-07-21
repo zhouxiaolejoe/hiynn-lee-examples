@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.datasource;
+package com.hiynn.dynamic.datasource.config.datasource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 public class DataSourceAsepct {
 
     //加载数据源(切入类和方法、@annotation只能作用于方法)
-//    @Pointcut("@annotation(com.dynamic.datasource.datasource.DataSource)")
+//    @Pointcut("@annotation(com.dynamic.datasource.datasource.DS)")
     @Pointcut("execution(public * com.hiynn.dynamic.datasource.*.*.*(..))")
     public void pointCut(){ }
 	/**
@@ -51,16 +51,16 @@ public class DataSourceAsepct {
     * @Param [clazz, method]
     * @return void
     **/
-	private void resolveDataSource(Class<?> clazz, Method method) {
+	public void resolveDataSource(Class<?> clazz, Method method) {
 		try {
 			Class<?>[] classes = method.getParameterTypes();
-			DataSource dataSource =null;
-			if (clazz.isAnnotationPresent(DataSource.class)) {
-				dataSource = clazz.getAnnotation(DataSource.class);
+			DS dataSource =null;
+			if (clazz.isAnnotationPresent(DS.class)) {
+				dataSource = clazz.getAnnotation(DS.class);
 			}
 			Method m = clazz.getMethod(method.getName(), classes);
-			if (m != null && m.isAnnotationPresent(DataSource.class)) {
-				dataSource = m.getAnnotation(DataSource.class);
+			if (m != null && m.isAnnotationPresent(DS.class)) {
+				dataSource = m.getAnnotation(DS.class);
 			}
 			DataSourceHolder.setDataSource(dataSource.value());
 			log.info("Aop Switch data sources: [" + dataSource.value()+"]");

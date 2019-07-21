@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-//@DataSource(DataSourceEnum.TEST2)
+//@DS(DSEnum.TEST2)
 public class TestServiceImpl implements TestService {
 	@Autowired
 	private TUserMapper userMapper;

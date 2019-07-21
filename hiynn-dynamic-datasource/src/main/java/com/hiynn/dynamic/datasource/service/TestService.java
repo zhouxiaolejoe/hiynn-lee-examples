@@ -1,13 +1,11 @@
 package com.hiynn.dynamic.datasource.service;
 
 
-import com.hiynn.dynamic.datasource.datasource.DataSource;
-import com.hiynn.dynamic.datasource.datasource.DataSourceEnum;
+import com.hiynn.dynamic.datasource.config.datasource.DS;
+import com.hiynn.dynamic.datasource.config.datasource.DSEnum;
 import com.hiynn.dynamic.datasource.dto.UserDTO;
 import com.hiynn.dynamic.datasource.entity.TRole;
 import com.hiynn.dynamic.datasource.entity.TUser;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -20,20 +18,21 @@ import java.util.List;
 **/
 public interface TestService {
 
-    @DataSource(DataSourceEnum.DB1)
+    @DS(DSEnum.DB1)
     TUser findUserById(Integer id);
 
-    @DataSource(DataSourceEnum.DB2)
+    @DS(DSEnum.DB2)
     TRole findRoleById(Integer id) ;
 
-    @DataSource(DataSourceEnum.DB2)
+    @DS(DSEnum.DB2)
     void insertRole() ;
 
-    @DataSource(DataSourceEnum.DB1)
+    @DS(DSEnum.DB1)
     int insertUser(UserDTO userDTO);
 
-    @DataSource(DataSourceEnum.DB1)
+    @DS(DSEnum.DB1)
     UserDTO updatetUser(UserDTO userDTO);
-    @DataSource(DataSourceEnum.DB1)
+
+    @DS(DSEnum.DB1)
     List<TUser> findUserAll();
 }
