@@ -44,10 +44,10 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-#  boot:
-#    admin:
-#      client:
-#        url: http://localhost:9809                      #admin 服务端地址
+  boot:
+    admin:
+      client:
+        url: http://localhost:9980                      #admin 服务端地址
 #  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
 #    location:
 logging:
