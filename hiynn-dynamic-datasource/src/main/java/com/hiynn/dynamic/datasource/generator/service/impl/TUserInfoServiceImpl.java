@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
  * Created by ZhouXiaoLe on 2019/7/20
  */
 @Service
-
 public class TUserInfoServiceImpl implements TUserInfoService {
 	@Autowired
 	TUserInfoMapper userInfoMapper;
