@@ -8,6 +8,8 @@ spring:
     admin:
       client:
         url: http://localhost:9980
+        username: joe
+        password: 123456
   application:
     name: hiynn-file-upload
 management:
@@ -18,3 +20,7 @@ management:
     web:
       exposure:
         include: '*'
+info:
+  name: hiynn-file-upload
+  version: 1.0.0
+  email: a864511019@163.com

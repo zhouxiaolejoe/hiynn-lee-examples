@@ -1,4 +1,10 @@
+server:
+  port: 9087
 spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.238.101:3306/test1?useUnicode=true&characterEncoding=utf-8
   boot:
     admin:
       client:
@@ -6,16 +12,7 @@ spring:
         username: joe
         password: 123456
   application:
-      name: hiynn-websocket
-  thymeleaf:
-    mode: HTML5
-    encoding: utf-8
-task:
-  corePoolSize: 10
-  maxPoolSize: 200
-  queueCapacity: 10
-server:
-  port: 8082
+    name: hiynn-spring-mybatis
 management:
   endpoint:
     shutdown:
@@ -25,6 +22,8 @@ management:
       exposure:
         include: '*'
 info:
-  name: hiynn-websocket
+  name: hiynn-spring-mybatis
   version: 1.0.0
   email: a864511019@163.com
+
+debug: true

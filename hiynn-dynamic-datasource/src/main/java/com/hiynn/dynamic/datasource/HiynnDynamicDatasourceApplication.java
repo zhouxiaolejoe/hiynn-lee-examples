@@ -14,10 +14,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 * @Param 
 * @return 
 **/
-@SpringBootApplication(
-		exclude = {DataSourceAutoConfiguration.class,
-		PageHelperAutoConfiguration.class
-})
+@SpringBootApplication
 public class HiynnDynamicDatasourceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HiynnDynamicDatasourceApplication.class, args);

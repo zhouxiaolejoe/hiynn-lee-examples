@@ -2,16 +2,24 @@ spring:
   datasource:
     master:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.238.101:3306/test1?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://192.168.238.101:3306/test1?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
-      type: com.alibaba.druid.pool.DruidDataSource
+      type: com.zaxxer.hikari.HikariDataSource
     slave:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.238.101:3306/test2?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://192.168.238.101:3306/test2?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
-      type: com.alibaba.druid.pool.DruidDataSource
+      type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariDataSource
+      connection-timeout: 30000
+      connection-test-query: SELECT 2
   profiles:
     active: dev
   jackson:
@@ -50,6 +58,9 @@ spring:
         url: http://localhost:9980                      #admin 服务端地址
         username: joe
         password: 123456
+  autoconfigure:
+    exclude: com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration #排除启动时配置类
+
 #  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
 #    location:
 logging:
@@ -66,6 +77,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:generator/mapper/*.xml           #mybatis mapper.xml文件位置
 #  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
   config-location: classpath:mybatis-config.xml         #配置mybatis配置文件
+  check-config-location: true
 #  configuration:
 #    map-underscore-to-camel-case: true                  #开启驼峰转换不可与mybatis-config.xml同时指定
 task:
@@ -88,7 +100,8 @@ management:
 info:
   name: hiynn-dynamic-datasource
   version: 1.0.0
+  email: a864511019@163.com
 upload:
   file:
     path: D:\var\log\
-debug: true
+#debug: true

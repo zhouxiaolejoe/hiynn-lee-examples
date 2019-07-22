@@ -30,4 +30,7 @@ management:
     web:
       exposure:
         include: '*'
-debug: true
+info:
+  name: hiynn-admin-client
+  version: 1.0.0
+  email: a864511019@163.com

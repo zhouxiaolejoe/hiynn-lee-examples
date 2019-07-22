@@ -2,13 +2,18 @@ package com.hiynn.dynamic.datasource.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
@@ -24,7 +29,9 @@ import javax.sql.DataSource;
         "com.hiynn.dynamic.datasource.mapper",
         "com.hiynn.dynamic.datasource.generator.mapper"
 })
-public class DataSourceConfig{
+public class DataSourceConfig implements EnvironmentAware {
+
+    Environment environment;
 
     /**
      * @Description  数据源(由JavaBeanBinder实现参数绑定)
@@ -33,10 +40,12 @@ public class DataSourceConfig{
      * @Param []
      * @return javax.sql.DS
      **/
-    @Bean("test1Db")
+    @Bean("master")
+    @Qualifier("slave")
     @ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource test1Db() {
-        return new DruidDataSource();
+//        return new DruidDataSource();
+        return DataSourceBuilder.create().build();
     }
 
    /**
@@ -46,14 +55,15 @@ public class DataSourceConfig{
    * @Param []
    * @return javax.sql.DS
    **/
-    @Bean("test2Db")
+    @Bean("slave")
     @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource test2Db() {
-        return new DruidDataSource();
+//        return new DruidDataSource();
+        return DataSourceBuilder.create().build();
     }
 
     /**
-    * @Description  动态数据源
+    * @Description 简单多数据源
     * @Author ZhouXiaoLe
     * @Date  2019/7/16  13:38
     * @Param []
@@ -82,4 +92,8 @@ public class DataSourceConfig{
         return new DataSourceTransactionManager(dynamicDataSource());
     }
 
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.environment=environment;
+    }
 }
