@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: hiynn-admin-server
+  security:
+    user:
+      name: joe
+      password: 123456

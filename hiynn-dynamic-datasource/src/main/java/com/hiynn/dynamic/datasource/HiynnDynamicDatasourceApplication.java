@@ -1,7 +1,6 @@
 package com.hiynn.dynamic.datasource;
 
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -18,10 +17,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication(
 		exclude = {DataSourceAutoConfiguration.class,
 		PageHelperAutoConfiguration.class
-})
-@MapperScan({
-		"com.hiynn.dynamic.datasource.mapper",
-		"com.hiynn.dynamic.datasource.generator.mapper"
 })
 public class HiynnDynamicDatasourceApplication {
 	public static void main(String[] args) {

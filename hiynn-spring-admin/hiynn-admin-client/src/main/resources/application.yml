@@ -7,13 +7,27 @@ spring:
     admin:
       client:
         url: http://localhost:9980
+        username: joe
+        password: 123456
+        instance:
+          metadata:
+            user.name: ${spring.security.user.name} #客户端元数据访问用户
+            user.password: ${spring.boot.admin.client.password} #客户端元数据访问密码
   application:
     name: hiynn-admin-client
+  security:
+    user:
+      name: hiynn-admin-client
+      password: 123456
+      roles: ACTUATOR_ADMIN
 management:
   endpoint:
     shutdown:
       enabled: true
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
         include: '*'
+debug: true

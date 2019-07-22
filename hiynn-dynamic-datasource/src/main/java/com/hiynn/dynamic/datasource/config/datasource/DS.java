@@ -13,6 +13,5 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Documented
 public @interface DS {
-
-    DSEnum value();
+    String value() default "";
 }

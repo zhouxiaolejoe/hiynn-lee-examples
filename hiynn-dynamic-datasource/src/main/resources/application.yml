@@ -1,12 +1,12 @@
 spring:
   datasource:
-    test1:
+    master:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://192.168.238.101:3306/test1?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
       type: com.alibaba.druid.pool.DruidDataSource
-    test2:
+    slave:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://192.168.238.101:3306/test2?useUnicode=true&characterEncoding=utf-8
       username: root
@@ -48,12 +48,14 @@ spring:
     admin:
       client:
         url: http://localhost:9980                      #admin 服务端地址
+        username: joe
+        password: 123456
 #  config:                                              #虚拟机参数指定application.yml位置写在配置文件中不起作用
 #    location:
 logging:
 #  level.org.springframework.web: debug                 #配置指定包使用debug日志
 #  level.com.dynamic.datasource.mapper: debug
-  config: classpath:logback-spring.xml                  #配置日志配置文件位置
+#  config: classpath:logback-spring.xml                  #配置日志配置文件位置
 #  path: /var/logs/dynamic_db                           #配置日志存放位置(由logback-spring.xml文件内配置)
 server:
   servlet:
@@ -89,3 +91,4 @@ info:
 upload:
   file:
     path: D:\var\log\
+debug: true

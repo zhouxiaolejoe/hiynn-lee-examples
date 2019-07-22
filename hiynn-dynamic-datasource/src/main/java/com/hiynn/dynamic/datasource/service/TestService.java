@@ -18,21 +18,21 @@ import java.util.List;
 **/
 public interface TestService {
 
-    @DS(DSEnum.DB1)
+    @DS("master")
     TUser findUserById(Integer id);
 
-    @DS(DSEnum.DB2)
+    @DS("slave")
     TRole findRoleById(Integer id) ;
 
-    @DS(DSEnum.DB2)
+    @DS("slave")
     void insertRole() ;
 
-    @DS(DSEnum.DB1)
+    @DS("master")
     int insertUser(UserDTO userDTO);
 
-    @DS(DSEnum.DB1)
+    @DS("master")
     UserDTO updatetUser(UserDTO userDTO);
 
-    @DS(DSEnum.DB1)
+    @DS("master")
     List<TUser> findUserAll();
 }

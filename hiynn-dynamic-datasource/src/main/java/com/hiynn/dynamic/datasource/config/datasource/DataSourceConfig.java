@@ -1,6 +1,7 @@
 package com.hiynn.dynamic.datasource.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,11 @@ import javax.sql.DataSource;
 * @return 
 **/
 @Configuration
-public class DataSourceConfig {
+@MapperScan({
+        "com.hiynn.dynamic.datasource.mapper",
+        "com.hiynn.dynamic.datasource.generator.mapper"
+})
+public class DataSourceConfig{
 
     /**
      * @Description  数据源(由JavaBeanBinder实现参数绑定)
@@ -29,7 +34,7 @@ public class DataSourceConfig {
      * @return javax.sql.DS
      **/
     @Bean("test1Db")
-    @ConfigurationProperties("spring.datasource.test1")
+    @ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource test1Db() {
         return new DruidDataSource();
     }
@@ -42,9 +47,8 @@ public class DataSourceConfig {
    * @return javax.sql.DS
    **/
     @Bean("test2Db")
-    @ConfigurationProperties("spring.datasource.test2")
+    @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource test2Db() {
-
         return new DruidDataSource();
     }
 
@@ -61,8 +65,8 @@ public class DataSourceConfig {
         DynamicDataSource dataSource = new DynamicDataSource();
         dataSource.setDefaultTargetDataSource(test1Db());
         Map<Object, Object> dataSourceMap = new HashMap<>(2);
-        dataSourceMap.put(DSEnum.DB1.getName(), test1Db());
-        dataSourceMap.put(DSEnum.DB2.getName(), test2Db());
+        dataSourceMap.put("master", test1Db());
+        dataSourceMap.put("slave", test2Db());
         dataSource.setTargetDataSources(dataSourceMap);
         return dataSource;
     }
@@ -77,4 +81,5 @@ public class DataSourceConfig {
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dynamicDataSource());
     }
+
 }

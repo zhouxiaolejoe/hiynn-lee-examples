@@ -11,9 +11,9 @@ public class DataSourceHolder {
 
     private static final ThreadLocal<String> DS_HOLDER = new ThreadLocal<>();
 
-    public static void setDataSource(DSEnum dataSource) {
+    public static void setDataSource(String dataSource) {
 
-        DS_HOLDER.set(dataSource.getName());
+        DS_HOLDER.set(dataSource);
     }
 
     public static String getDataSource() {

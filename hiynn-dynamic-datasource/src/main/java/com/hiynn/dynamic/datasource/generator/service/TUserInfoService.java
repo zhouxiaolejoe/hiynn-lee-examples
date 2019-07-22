@@ -10,7 +10,7 @@ import com.hiynn.dynamic.datasource.generator.entity.TUserInfoExample;
 /**
  * Created by ZhouXiaoLe on 2019/7/20
  */
-@DS(DSEnum.DB1)
+@DS("master")
 public interface TUserInfoService {
 	long countByExample(TUserInfoExample example);
 	TUserInfo selectByPrimaryKey(Integer id);

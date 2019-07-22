@@ -71,7 +71,7 @@ public class FileUploadController {
 		}
 		return  ResultBuilder.success();
 	}
-	private String FileUtil(HttpServletRequest request,MultipartFile file) throws IOException {
+	public String FileUtil(HttpServletRequest request,MultipartFile file) throws IOException {
 		//生成文件名
 		String filePrefix = UUID.randomUUID().toString().replaceAll("-", "");
 		//获取文件后缀
