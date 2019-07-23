@@ -78,6 +78,17 @@ public class FileUploadController {
 		}
 		return  ResultBuilder.success();
 	}
+
+	/**
+	* @Description
+	* @Method FileUtil
+	* @param request
+	* @param file
+	* @return java.lang.String
+	* @throws i
+	* @Author ZhouXiaoLe
+	* @Date  2019-07-23  10:32:43
+	**/
 	private String FileUtil(HttpServletRequest request,MultipartFile file) throws IOException {
 		//生成文件名
 		String filePrefix = UUID.randomUUID().toString().replaceAll("-", "");

@@ -16,7 +16,7 @@ public class HiynnSpringMybatisApplication {
 	@GetMapping("/getInfo")
 	public Object getInfo(){
 
-		return null;
+		return "123";
 	}
 
 }

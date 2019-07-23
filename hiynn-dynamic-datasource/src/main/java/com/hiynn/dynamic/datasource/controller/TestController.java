@@ -10,7 +10,10 @@ import com.hiynn.dynamic.datasource.okhttp3.OkHttpUtil;
 import com.hiynn.dynamic.datasource.service.TestService;
 import com.hiynn.dynamic.datasource.untils.FastJsonUtils;
 import com.hiynn.dynamic.datasource.untils.ResultBuilder;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,10 +104,10 @@ public class TestController {
 		BeanUtils.copyProperties(userDTO, user);
 		return ResultBuilder.success(Arrays.asList(user));
 	}
-
+	
 	@GetMapping("/testOkhttp3Get")
 	@ApiOperation(value = "测试Okhttp3Get",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	public ResultBuilder testOdetta3Get(){
+	public ResultBuilder testOdetta3Get(String id1,String name){
 
 		String result = OkHttpUtil.getStringFromServer("http://localhost:8080/dynamic_db/testFindRole/1");
 		Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
