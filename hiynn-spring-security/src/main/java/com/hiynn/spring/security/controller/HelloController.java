@@ -1,11 +1,16 @@
 package com.hiynn.spring.security.controller;
 
+import com.hiynn.spring.security.properties.CustomPropleProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.CronTask;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -19,9 +24,12 @@ import java.util.concurrent.Callable;
 @Slf4j
 public class HelloController {
 
+	@Autowired
+	CustomPropleProperties manProperties;
+
 	@GetMapping("/getInfo/{id}")
 	public String getInfo(@PathVariable("id")String id){
-		return String.format("Hello World!!! %s", id);
+		return String.format("Hello World!!! %s %s", manProperties.getMan().getName(),manProperties.getWoman().getName());
 	}
 
 	@GetMapping("/getAsyncInfo/{id}")
