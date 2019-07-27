@@ -1,21 +1,23 @@
 package com.hiynn.spring.security.controller;
 
 import com.hiynn.spring.security.properties.CustomPropleProperties;
+import com.hiynn.untils.ResultBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.CronTask;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.scheduling.support.CronTrigger;
+import org.springframework.scheduling.Trigger;
+import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 /**
  * @Description
- * @Project hiynn-lee-examples
+ * @Project hiynn-lee-example1
  * @Package com.hiynn.spring.security.controller
  * @Author ZhouXiaoLe
  * @Date 2019-07-23 13:00x
@@ -26,6 +28,22 @@ public class HelloController {
 
 	@Autowired
 	CustomPropleProperties manProperties;
+
+
+
+	@GetMapping("/getTask/{id}")
+	public ResultBuilder getTask(@PathVariable("id")String id){
+
+		return ResultBuilder.success();
+	}
+
+	@GetMapping("/getStop/{id}")
+	public ResultBuilder getStop(@PathVariable("id")String id){
+
+		return ResultBuilder.success();
+	}
+
+
 
 	@GetMapping("/getInfo/{id}")
 	public String getInfo(@PathVariable("id")String id){

@@ -13,31 +13,31 @@ import javax.servlet.Filter;
 
 /**
  * @Description
- * @Project hiynn-lee-examples
+ * @Project hiynn-lee-example1
  * @Package com.hiynn.spring.security.config
  * @Author ZhouXiaoLe
  * @Date 2019-07-24 09:47
  */
-@Configuration
+//@Configuration
 public class WebConfig implements WebMvcConfigurer {
-	@Autowired
-	TimeInterceptor timeInterceptor;
+//	@Autowired
+//	TimeInterceptor timeInterceptor;
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(timeInterceptor);
-	}
-
-	/**
-	 * 注册自定义过滤器
-	 */
-	@Bean
-	public FilterRegistrationBean registrationBean(){
-		FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-		TimeFilter timeFilter = new TimeFilter();
-		registrationBean.setFilter(timeFilter);
-		registrationBean.addUrlPatterns("/*");
-		return registrationBean;
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(timeInterceptor);
+//	}
+//
+//	/**
+//	 * 注册自定义过滤器
+//	 */
+//	@Bean
+//	public FilterRegistrationBean registrationBean(){
+//		FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+//		TimeFilter timeFilter = new TimeFilter();
+//		registrationBean.setFilter(timeFilter);
+//		registrationBean.addUrlPatterns("/*");
+//		return registrationBean;
+//	}
 
 }

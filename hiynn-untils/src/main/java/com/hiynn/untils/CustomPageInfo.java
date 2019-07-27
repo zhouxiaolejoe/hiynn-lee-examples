@@ -1,4 +1,4 @@
-package com.hiynn.dynamic.datasource.untils;
+package com.hiynn.untils;
 
 import com.github.pagehelper.PageInfo;
 import lombok.Getter;

@@ -2,10 +2,9 @@ package com.hiynn.dynamic.datasource.exception;
 
 
 import com.google.common.collect.Maps;
-import com.hiynn.dynamic.datasource.untils.ResultBuilder;
+import com.hiynn.untils.ResultBuilder;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

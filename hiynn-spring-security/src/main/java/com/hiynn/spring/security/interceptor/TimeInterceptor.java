@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Description
- * @Project hiynn-lee-examples
+ * @Project hiynn-lee-example1
  * @Package com.hiynn.spring.security.interceptor
  * @Author ZhouXiaoLe
  * @Date 2019-07-24 09:29
  */
 @Slf4j
-@Component
+//@Component
 public class TimeInterceptor implements HandlerInterceptor {
 
 	@Override

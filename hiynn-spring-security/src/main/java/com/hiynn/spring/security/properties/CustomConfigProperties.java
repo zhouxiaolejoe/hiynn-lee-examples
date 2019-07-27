@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description
- * @Project hiynn-lee-examples
+ * @Project hiynn-lee-example1
  * @Package com.hiynn.spring.security.properties
  * @Author ZhouXiaoLe
  * @Date 2019-07-24 15:57

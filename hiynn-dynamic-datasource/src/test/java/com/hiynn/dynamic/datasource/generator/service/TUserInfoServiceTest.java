@@ -1,11 +1,10 @@
 package com.hiynn.dynamic.datasource.generator.service;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.hiynn.dynamic.datasource.generator.entity.TUserInfo;
 import com.hiynn.dynamic.datasource.generator.entity.TUserInfoExample;
 import com.hiynn.dynamic.datasource.generator.mapper.TUserInfoMapper;
-import com.hiynn.dynamic.datasource.untils.FastJsonUtils;
+import com.hiynn.untils.FastJsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
