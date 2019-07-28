@@ -34,13 +34,13 @@ public class HelloController {
 	@GetMapping("/getTask/{id}")
 	public ResultBuilder getTask(@PathVariable("id")String id){
 
-		return ResultBuilder.success();
+		return ResultBuilder.success(id);
 	}
 
 	@GetMapping("/getStop/{id}")
 	public ResultBuilder getStop(@PathVariable("id")String id){
 
-		return ResultBuilder.success();
+		return ResultBuilder.success(id);
 	}
 
 
