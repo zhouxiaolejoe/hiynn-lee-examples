@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @Author ZhouXiaoLe
  * @Date 2019-07-24 10:34
  */
-@Aspect
+//@Aspect
 @Component
 @Slf4j
 public class TimeAspect {

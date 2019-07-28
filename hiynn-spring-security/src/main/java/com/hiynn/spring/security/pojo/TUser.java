@@ -1,10 +1,10 @@
 package com.hiynn.spring.security.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Proxy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -66,7 +66,7 @@ public class TUser implements UserDetails{
             name = "T_USER_ROlE",
             joinColumns = {@JoinColumn(name = "T_USER_ID", referencedColumnName = "USER_ID")},
             inverseJoinColumns = {@JoinColumn(name = "T_ROLE_ID", referencedColumnName = "ROLE_ID")})
-    private List<TRole> TRoles;
+    private List<TRole> roles;
 
     /**
     * @Description 实现UserDetails 重写的方法
@@ -81,9 +81,9 @@ public class TUser implements UserDetails{
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
         List<GrantedAuthority> auths = new ArrayList<>();
-        List<TRole> TRoles = this.getTRoles();
+        List<TRole> TRoles = this.getRoles();
         for (TRole TRole : TRoles) {
-            for (TPermission aurh : TRole.getPermission()) {
+            for (TPermission aurh : TRole.getPermissions()) {
                 auths.add(new SimpleGrantedAuthority(aurh.getPermissionName()));
             }
         }

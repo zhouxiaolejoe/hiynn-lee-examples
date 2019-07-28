@@ -15,7 +15,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+    open-in-view: true
+hiynn:
+  security:
+    browser:
+      login-page: /demoLogin #自定义配置登录页
 
 people:
   woman:

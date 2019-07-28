@@ -1,10 +1,10 @@
 package com.hiynn.spring.security.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,11 +26,11 @@ public class TRole {
     /**
      * 懒加载 不会查询role表
      */
-    @ManyToMany(mappedBy = "TRoles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private List<TUser> users;
     /**
      * 急加载 会查询role表
      */
-    @ManyToMany(mappedBy = "TRoles",fetch = FetchType.EAGER)
-    private List<TPermission> Permission;
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    private List<TPermission> permissions;
 }

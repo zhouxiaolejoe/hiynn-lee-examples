@@ -1,5 +1,7 @@
 package com.hiynn.spring.security.config;
 
+import com.hiynn.spring.security.config.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	SecurityProperties securityProperties;
+
+	@Autowired
+	HiynnAuthenticationSuccessHandler hiynnAuthenticationSuccessHandler;
+
 	/**
 	 * 创建 spring security 密码策略
 	 */
@@ -43,11 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.formLogin()
-				.loginPage("/customLogin")
-					.loginProcessingUrl("/user/login")
+				.loginPage("/auth/require")//自定义登录页
+					.loginProcessingUrl("/auth/from")//默认为login的post请求
+					.successHandler(hiynnAuthenticationSuccessHandler)
 					.and()
 				.authorizeRequests()
-					.antMatchers("/customLogin").permitAll()
+					.antMatchers("/auth/require",
+							securityProperties.getBrowser().getLoginPage()).permitAll()
 					.anyRequest()
 					.authenticated()
 					.and()

@@ -32,13 +32,13 @@ public class UserDaoTest {
 		log.error(FastJsonUtils.getBeanToJson(user));
 
 	}
-	@Test
-	public void findByUserId(){
-		TUser user = userDao.findByUserId(1L);
-		log.error(FastJsonUtils.getBeanToJson(user));
-		String encode = new BCryptPasswordEncoder().encode("123456");
-		System.err.println(encode);
-	}
+//	@Test
+//	public void findByUserId(){
+//		TUser user = userDao.findByUserId(1L);
+//		log.error(FastJsonUtils.getBeanToJson(user));
+//		String encode = new BCryptPasswordEncoder().encode("123456");
+//		System.err.println(encode);
+//	}
 	@Test
 	public void findByUserId1(){
 		String encode = new BCryptPasswordEncoder().encode("123456");

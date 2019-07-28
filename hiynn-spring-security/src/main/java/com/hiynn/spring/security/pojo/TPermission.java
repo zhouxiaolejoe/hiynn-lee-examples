@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -40,6 +39,6 @@ public class TPermission {
             name = "T_ROlE_PERMISSION",
             joinColumns = {@JoinColumn(name = "T_PERMISSION_ID", referencedColumnName = "PERMISSION_ID")},
             inverseJoinColumns = {@JoinColumn(name = "T_ROLE_ID", referencedColumnName = "ROLE_ID")})
-    private List<TRole> TRoles;
+    private List<TRole> roles;
 
 }
