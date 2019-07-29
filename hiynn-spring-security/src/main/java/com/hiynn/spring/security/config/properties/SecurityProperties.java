@@ -13,5 +13,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "hiynn.security")
 @Data
 public class SecurityProperties {
-	private BrowserProperties browser = new BrowserProperties();
+    private BrowserProperties browser = new BrowserProperties();
 }

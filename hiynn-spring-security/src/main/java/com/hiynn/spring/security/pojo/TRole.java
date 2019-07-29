@@ -19,18 +19,18 @@ public class TRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ROLE_ID",columnDefinition = "int(11) comment '角色id'")
+    @Column(name = "ROLE_ID", columnDefinition = "int(11) comment '角色id'")
     private Long roleId;
-    @Column(name = "ROLE_NAME",columnDefinition = "varchar(25) comment '角色名称'")
+    @Column(name = "ROLE_NAME", columnDefinition = "varchar(25) comment '角色名称'")
     private String roleName;
     /**
      * 懒加载 不会查询role表
      */
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<TUser> users;
     /**
      * 急加载 会查询role表
      */
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private List<TPermission> permissions;
 }

@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
-* @Description  数据源枚举
-* @Author ZhouXiaoLe
-* @Date  2019/7/16  13:34
-* @Param 
-* @return 
-**/
+ * @Description 数据源枚举
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/16  13:34
+ * @Param
+ * @return
+ **/
 @AllArgsConstructor
 @Getter
 public enum DSEnum {

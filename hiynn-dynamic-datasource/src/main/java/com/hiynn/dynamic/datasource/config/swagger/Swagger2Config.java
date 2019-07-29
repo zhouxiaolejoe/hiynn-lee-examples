@@ -19,23 +19,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* @Description  只有在开发测试环境测这个配置类才会被加载
-* @Author ZhouXiaoLe
-* @Date  2019/7/18  14:37
-* @Param
-* @return
-**/
-@Profile({"dev","test"})
+ * @Description 只有在开发测试环境测这个配置类才会被加载
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/18  14:37
+ * @Param
+ * @return
+ **/
+@Profile({"dev", "test"})
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
     /**
-    * @Description Swagger2配置
-    * @Author ZhouXiaoLe
-    * @Date  2019/7/18  14:36
-    * @Param []
-    * @return springfox.documentation.spring.web.plugins.Docket
-    **/
+     * @return springfox.documentation.spring.web.plugins.Docket
+     * @Description Swagger2配置
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/18  14:36
+     * @Param []
+     **/
     @Bean
     public Docket createRestApi() {
         ParameterBuilder ticketPar = new ParameterBuilder();
@@ -54,12 +54,12 @@ public class Swagger2Config {
     }
 
     /**
-    * @Description  构建 api文档的详细信息函数
-    * @Author ZhouXiaoLe
-    * @Date  2019/7/18  14:36
-    * @Param []
-    * @return springfox.documentation.service.ApiInfo
-    **/
+     * @return springfox.documentation.service.ApiInfo
+     * @Description 构建 api文档的详细信息函数
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/18  14:36
+     * @Param []
+     **/
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题

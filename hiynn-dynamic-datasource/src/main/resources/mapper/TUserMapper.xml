@@ -7,8 +7,8 @@
     <insert id="insertUser" parameterType="tUser">
         INSERT INTO test1.t_user(account, password, username)
         VALUES (#{account},
-                #{password},
-                #{username})
+        #{password},
+        #{username})
     </insert>
     <update id="updatetUser" parameterType="tUser">
         update test1.t_user

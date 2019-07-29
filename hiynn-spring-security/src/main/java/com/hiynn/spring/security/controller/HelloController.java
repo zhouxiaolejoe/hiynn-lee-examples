@@ -26,43 +26,41 @@ import java.util.concurrent.Callable;
 @Slf4j
 public class HelloController {
 
-	@Autowired
-	CustomPropleProperties manProperties;
+    @Autowired
+    CustomPropleProperties manProperties;
 
 
+    @GetMapping("/getTask/{id}")
+    public ResultBuilder getTask(@PathVariable("id") String id) {
 
-	@GetMapping("/getTask/{id}")
-	public ResultBuilder getTask(@PathVariable("id")String id){
+        return ResultBuilder.success(id);
+    }
 
-		return ResultBuilder.success(id);
-	}
+    @GetMapping("/getStop/{id}")
+    public ResultBuilder getStop(@PathVariable("id") String id) {
 
-	@GetMapping("/getStop/{id}")
-	public ResultBuilder getStop(@PathVariable("id")String id){
-
-		return ResultBuilder.success(id);
-	}
-
+        return ResultBuilder.success(id);
+    }
 
 
-	@GetMapping("/getInfo/{id}")
-	public String getInfo(@PathVariable("id")String id){
-		return String.format("Hello World!!! %s %s", manProperties.getMan().getName(),manProperties.getWoman().getName());
-	}
+    @GetMapping("/getInfo/{id}")
+    public String getInfo(@PathVariable("id") String id) {
+        return String.format("Hello World!!! %s %s", manProperties.getMan().getName(), manProperties.getWoman().getName());
+    }
 
-	@GetMapping("/getAsyncInfo/{id}")
-	public Callable<String> getAsyncInfo(@PathVariable("id")String id){
-		log.info("主线程开始");
-		Callable<String> callable = new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				log.info("副线程开始");
-				Thread.sleep(1000);
-				log.info("副线程结束");
-				return String.format("Hello World!!! %s", id);
-			}
-		};
-		log.info("主线程结束");
-		return callable;
-	}
+    @GetMapping("/getAsyncInfo/{id}")
+    public Callable<String> getAsyncInfo(@PathVariable("id") String id) {
+        log.info("主线程开始");
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                log.info("副线程开始");
+                Thread.sleep(1000);
+                log.info("副线程结束");
+                return String.format("Hello World!!! %s", id);
+            }
+        };
+        log.info("主线程结束");
+        return callable;
+    }
 }

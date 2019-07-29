@@ -20,28 +20,29 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class TestServiceTest {
-	@Autowired
-	TestService service;
-	@Test
-	public void findTest1() {
-		TUser test1 = service.findUserById(1);
-	}
+    @Autowired
+    TestService service;
 
-	@Test
-	public void findTest2() {
-		TRole test1 = service.findRoleById(1);
+    @Test
+    public void findTest1() {
+        TUser test1 = service.findUserById(1);
+    }
 
-	}
+    @Test
+    public void findTest2() {
+        TRole test1 = service.findRoleById(1);
 
-	@Test
-	public void insert() {
-		service.insertRole();
-	}
+    }
 
-	@Test
-	public void findUserAll() {
-		PageHelper.startPage(1, 1);
-		List<TUser> userAll = service.findUserAll();
-		log.info(FastJsonUtils.getBeanToJson(CustomPageInfo.of(PageInfo.of(userAll))));
-	}
+    @Test
+    public void insert() {
+        service.insertRole();
+    }
+
+    @Test
+    public void findUserAll() {
+        PageHelper.startPage(1, 1);
+        List<TUser> userAll = service.findUserAll();
+        log.info(FastJsonUtils.getBeanToJson(CustomPageInfo.of(PageInfo.of(userAll))));
+    }
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>WebSocket</title>
 
 </head>
-<body >
+<body>
 <noscript><h2 style="color: #ff0000">貌似你的浏览器不支持websocket</h2></noscript>
 <div>
     <div>
@@ -12,7 +12,7 @@
         <button id="disconnect" disabled="disabled" onclick="disconnect();">断开连接</button>
     </div>
     <div id="conversationDiv">
-        <label>输入你的名字</label><input type="text" id="name" />
+        <label>输入你的名字</label><input type="text" id="name"/>
         <button id="sendName" onclick="sendName();">发送</button>
         <div id="response">
         </div>
@@ -34,10 +34,10 @@
     function connect() {
         var socket = new SockJS('http://10.0.92.127:8080/dynamic_db/ws'); //1
         stompClient = Stomp.over(socket);//2
-        stompClient.connect({}, function(frame) {//3
+        stompClient.connect({}, function (frame) {//3
             setConnected(true);
             console.log('开始进行连接Connected: ' + frame);
-            stompClient.subscribe('/topic/public', function(respnose){ //4
+            stompClient.subscribe('/topic/public', function (respnose) { //4
                 showResponse(respnose.body);
             });
         });
@@ -58,8 +58,8 @@
     }
 
     function showResponse(message) {
-        console.log("["+message+"]");
-        $("#response").append("<font color='red'>"+message+"</font><br/>")
+        console.log("[" + message + "]");
+        $("#response").append("<font color='red'>" + message + "</font><br/>")
     }
 </script>
 </body>

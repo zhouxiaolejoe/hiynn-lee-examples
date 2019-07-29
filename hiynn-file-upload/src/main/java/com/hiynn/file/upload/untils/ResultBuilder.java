@@ -5,12 +5,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
-* @Description  统一返回值
-* @Author ZhouXiaoLe
-* @Date  2019/7/17  16:22
-* @Param 
-* @return 
-**/
+ * @Description 统一返回值
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/17  16:22
+ * @Param
+ * @return
+ **/
 @Data
 public class ResultBuilder<T> implements Serializable {
 
@@ -47,7 +47,7 @@ public class ResultBuilder<T> implements Serializable {
         return resultBuilder(CODE_FAIL, MSG_FAIL, result);
     }
 
-    public static <T> ResultBuilder <T> fail() {
+    public static <T> ResultBuilder<T> fail() {
         return fail(null);
     }
 
@@ -55,7 +55,7 @@ public class ResultBuilder<T> implements Serializable {
         return resultBuilder(CODE_FAIL, msg, result);
     }
 
-    public static <T> ResultBuilder<T> fail(int code,T result, String msg) {
+    public static <T> ResultBuilder<T> fail(int code, T result, String msg) {
         return resultBuilder(code, msg, result);
     }
 

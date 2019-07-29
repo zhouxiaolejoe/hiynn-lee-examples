@@ -13,28 +13,28 @@ import java.util.concurrent.Executor;
 @EnableAsync
 @EnableScheduling
 public class AsyncTaskConfig {
-	
-	@Value("${task.corePoolSize}")
-	private int corePoolSize;
-	@Value("${task.maxPoolSize}")
-	private int maxPoolSize;
-	@Value("${task.queueCapacity}")
-	private int queueCapacity;
 
-	/**
-	* @Description  线程池配置
-	* @Author ZhouXiaoLe
-	* @Date  2019/7/17  17:29
-	* @Param []
-	* @return java.util.concurrent.Executor
-	**/
-	@Bean
-	public Executor taskExecutor() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(corePoolSize);
-		executor.setMaxPoolSize(maxPoolSize);
-		executor.setQueueCapacity(queueCapacity);
-		executor.initialize();
-		return executor;
-	}
+    @Value("${task.corePoolSize}")
+    private int corePoolSize;
+    @Value("${task.maxPoolSize}")
+    private int maxPoolSize;
+    @Value("${task.queueCapacity}")
+    private int queueCapacity;
+
+    /**
+     * @return java.util.concurrent.Executor
+     * @Description 线程池配置
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/17  17:29
+     * @Param []
+     **/
+    @Bean
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(queueCapacity);
+        executor.initialize();
+        return executor;
+    }
 }

@@ -10,22 +10,22 @@ import com.hiynn.dynamic.datasource.entity.TUser;
 import java.util.List;
 
 /**
-* @Description  TestService
-* @Author ZhouXiaoLe
-* @Date  2019/7/16  13:34
-* @Param 
-* @return 
-**/
+ * @Description TestService
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/16  13:34
+ * @Param
+ * @return
+ **/
 public interface TestService {
 
     @DS("master")
     TUser findUserById(Integer id);
 
     @DS("slave")
-    TRole findRoleById(Integer id) ;
+    TRole findRoleById(Integer id);
 
     @DS("slave")
-    void insertRole() ;
+    void insertRole();
 
     @DS("master")
     int insertUser(UserDTO userDTO);

@@ -2,7 +2,9 @@ package com.hiynn.dynamic.datasource.generator.mapper;
 
 import com.hiynn.dynamic.datasource.generator.entity.TUserInfo;
 import com.hiynn.dynamic.datasource.generator.entity.TUserInfoExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TUserInfoMapper {

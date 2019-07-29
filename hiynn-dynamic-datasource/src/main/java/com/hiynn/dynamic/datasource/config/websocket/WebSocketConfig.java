@@ -8,12 +8,12 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 /**
-* @Description  
-* @Author ZhouXiaoLe
-* @Date  2019/7/19  11:04
-* @Param 
-* @return 
-**/
+ * @Description
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/19  11:04
+ * @Param
+ * @return
+ **/
 @Configuration
 @EnableWebSocketMessageBroker
 @Slf4j
@@ -22,7 +22,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")//项目设置名称在客户端也要加上
-		        .setAllowedOrigins("*")//跨域支持
+                .setAllowedOrigins("*")//跨域支持
 //                .setHandshakeHandler(new DefaultHandshakeHandler(){
 //                    @Override
 //                    protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {

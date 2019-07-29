@@ -17,13 +17,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
+
 /**
-* @Description  创建数据源
-* @Author ZhouXiaoLe
-* @Date  2019/7/16  13:32
-* @Param 
-* @return 
-**/
+ * @Description 创建数据源
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/16  13:32
+ * @Param
+ * @return
+ **/
 @Configuration
 @MapperScan({
         "com.hiynn.dynamic.datasource.mapper",
@@ -34,11 +35,11 @@ public class DataSourceConfig implements EnvironmentAware {
     Environment environment;
 
     /**
-     * @Description  数据源(由JavaBeanBinder实现参数绑定)
-     * @Author ZhouXiaoLe
-     * @Date  2019/7/16  13:38
-     * @Param []
      * @return javax.sql.DS
+     * @Description 数据源(由JavaBeanBinder实现参数绑定)
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/16  13:38
+     * @Param []
      **/
     @Bean("master")
     @Qualifier("slave")
@@ -48,13 +49,13 @@ public class DataSourceConfig implements EnvironmentAware {
         return DataSourceBuilder.create().build();
     }
 
-   /**
-   * @Description  数据源
-   * @Author ZhouXiaoLe
-   * @Date  2019/7/16  13:38
-   * @Param []
-   * @return javax.sql.DS
-   **/
+    /**
+     * @return javax.sql.DS
+     * @Description 数据源
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/16  13:38
+     * @Param []
+     **/
     @Bean("slave")
     @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource test2Db() {
@@ -63,12 +64,12 @@ public class DataSourceConfig implements EnvironmentAware {
     }
 
     /**
-    * @Description 简单多数据源
-    * @Author ZhouXiaoLe
-    * @Date  2019/7/16  13:38
-    * @Param []
-    * @return javax.sql.DS
-    **/
+     * @return javax.sql.DS
+     * @Description 简单多数据源
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/16  13:38
+     * @Param []
+     **/
     @Bean("dynamicDataSource")
     @Primary
     public DataSource dynamicDataSource() {
@@ -80,13 +81,14 @@ public class DataSourceConfig implements EnvironmentAware {
         dataSource.setTargetDataSources(dataSourceMap);
         return dataSource;
     }
+
     /**
-    * @Description  事务管理器
-    * @Author ZhouXiaoLe
-    * @Date  2019/7/16  13:38
-    * @Param []
-    * @return org.springframework.transaction.PlatformTransactionManager
-    **/
+     * @return org.springframework.transaction.PlatformTransactionManager
+     * @Description 事务管理器
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/16  13:38
+     * @Param []
+     **/
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dynamicDataSource());
@@ -94,6 +96,6 @@ public class DataSourceConfig implements EnvironmentAware {
 
     @Override
     public void setEnvironment(Environment environment) {
-        this.environment=environment;
+        this.environment = environment;
     }
 }

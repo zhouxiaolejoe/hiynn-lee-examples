@@ -11,15 +11,15 @@ import java.io.IOException;
  */
 @SpringBootTest
 public class TestFile {
-	@Test
-	public void test1() throws IOException {
-		String a = "a";
-		String b = "b";
-		String c = "c";
-		String format = String.format("%s%s%s", a, b, c);
-		System.err.println(format);
-		String fileName  = "1.json";
-		String substring = fileName.substring(fileName.lastIndexOf("."));
-		System.err.println(substring);
-	}
+    @Test
+    public void test1() throws IOException {
+        String a = "a";
+        String b = "b";
+        String c = "c";
+        String format = String.format("%s%s%s", a, b, c);
+        System.err.println(format);
+        String fileName = "1.json";
+        String substring = fileName.substring(fileName.lastIndexOf("."));
+        System.err.println(substring);
+    }
 }

@@ -17,14 +17,15 @@ import java.util.Date;
  */
 @Slf4j
 public class SimpleJob1 implements Job {
-	public SimpleJob1() {
-	}
+    public SimpleJob1() {
+    }
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		// This job simply prints out its job name and the
-		// date and time that it is running
-		JobKey jobKey = context.getJobDetail().getKey();
-		log.info("SimpleJob1 says: " + jobKey + " executing at " + new Date());
-	}
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        // This job simply prints out its job name and the
+        // date and time that it is running
+        JobKey jobKey = context.getJobDetail().getKey();
+        log.info("SimpleJob1 says: " + jobKey + " executing at " + new Date());
+    }
+
 }

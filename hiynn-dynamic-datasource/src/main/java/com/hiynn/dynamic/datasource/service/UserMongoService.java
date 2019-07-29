@@ -6,44 +6,48 @@ import com.hiynn.dynamic.datasource.entity.UserInfo;
 import java.util.List;
 
 public interface UserMongoService {
-	/**
-	* @Description  
-	* @Author ZhouXiaoLe
-	* @Date  2019/6/12  14:00
-	* @Param []
-	* @return java.util.List<com.hiynn.dockertest.pojo.UserInfo>
-	**/
-	List<UserInfo> getUserInfoAll();
-	/**
-	* @Description  
-	* @Author ZhouXiaoLe
-	* @Date  2019/6/12  14:00
-	* @Param [id]
-	* @return com.hiynn.dockertest.pojo.UserInfo
-	**/
-	UserInfo getUserInfoOne(Object id);
-	/**
-	* @Description  
-	* @Author ZhouXiaoLe
-	* @Date  2019/6/12  14:00
-	* @Param [userInfo]
-	* @return void
-	**/
-	void insertUserInfo(UserInfo userInfo);
-	/**
-	* @Description  
-	* @Author ZhouXiaoLe
-	* @Date  2019/6/12  14:00
-	* @Param [userInfo]
-	* @return void
-	**/
-	void updateUserInfo(UserInfo userInfo);
-	/**
-	* @Description
-	* @Author ZhouXiaoLe
-	* @Date  2019/6/12  14:00
-	* @Param [id]
-	* @return void
-	**/
-	void deleteUserInfo(Object id);
+    /**
+     * @return java.util.List<com.hiynn.dockertest.pojo.UserInfo>
+     * @Description
+     * @Author ZhouXiaoLe
+     * @Date 2019/6/12  14:00
+     * @Param []
+     **/
+    List<UserInfo> getUserInfoAll();
+
+    /**
+     * @return com.hiynn.dockertest.pojo.UserInfo
+     * @Description
+     * @Author ZhouXiaoLe
+     * @Date 2019/6/12  14:00
+     * @Param [id]
+     **/
+    UserInfo getUserInfoOne(Object id);
+
+    /**
+     * @return void
+     * @Description
+     * @Author ZhouXiaoLe
+     * @Date 2019/6/12  14:00
+     * @Param [userInfo]
+     **/
+    void insertUserInfo(UserInfo userInfo);
+
+    /**
+     * @return void
+     * @Description
+     * @Author ZhouXiaoLe
+     * @Date 2019/6/12  14:00
+     * @Param [userInfo]
+     **/
+    void updateUserInfo(UserInfo userInfo);
+
+    /**
+     * @return void
+     * @Description
+     * @Author ZhouXiaoLe
+     * @Date 2019/6/12  14:00
+     * @Param [id]
+     **/
+    void deleteUserInfo(Object id);
 }

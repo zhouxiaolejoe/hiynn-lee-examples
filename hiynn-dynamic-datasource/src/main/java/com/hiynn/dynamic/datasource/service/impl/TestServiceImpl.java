@@ -12,45 +12,48 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 public class TestServiceImpl implements TestService {
-	@Autowired
-	private TUserMapper userMapper;
-	@Autowired
-	private TRoleMapper roleMapper;
+    @Autowired
+    private TUserMapper userMapper;
+    @Autowired
+    private TRoleMapper roleMapper;
 
-	@Override
-	public TUser findUserById(Integer id)  {
-		return userMapper.findUserById(id);
-	}
-	@Override
-	public TRole findRoleById(Integer id){
-		return roleMapper.findRoleById(id);
-	}
-	/**
-	 * 如果切面不加@Order，添加Transactional注解会导致切换数据源失效
-	 */
-	@Override
-	@Transactional(rollbackFor = Exception.class)
-	public void insertRole() {
-		roleMapper.insertRole();
-		int i = 1 / 0;
-	}
+    @Override
+    public TUser findUserById(Integer id) {
+        return userMapper.findUserById(id);
+    }
 
-	@Override
-	public int insertUser(UserDTO userDTO) {
-		return userMapper.insertUser(userDTO);
-	}
+    @Override
+    public TRole findRoleById(Integer id) {
+        return roleMapper.findRoleById(id);
+    }
 
-	@Override
-	public UserDTO updatetUser(UserDTO userDTO) {
-		userMapper.updatetUser(userDTO);
-		return userDTO;
+    /**
+     * 如果切面不加@Order，添加Transactional注解会导致切换数据源失效
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insertRole() {
+        roleMapper.insertRole();
+        int i = 1 / 0;
+    }
 
-	}
+    @Override
+    public int insertUser(UserDTO userDTO) {
+        return userMapper.insertUser(userDTO);
+    }
 
-	@Override
-	public List<TUser> findUserAll() {
-		return userMapper.findUserAll();
-	}
+    @Override
+    public UserDTO updatetUser(UserDTO userDTO) {
+        userMapper.updatetUser(userDTO);
+        return userDTO;
+
+    }
+
+    @Override
+    public List<TUser> findUserAll() {
+        return userMapper.findUserAll();
+    }
 }

@@ -13,18 +13,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @Slf4j
 public class RedisTest {
-	@Autowired
-	RedisTemplate redisTemplate;
-	@Autowired
-	TestService service;
-	@Test
-	public void test1(){
-		redisTemplate.opsForValue().set("joe", service.findUserById(1));
-	}
-	@Test
-	public void test2(){
-		Object joe = redisTemplate.opsForValue().get("joe");
-		log.info(FastJsonUtils.getBeanToJson(joe));
-	}
+    @Autowired
+    RedisTemplate redisTemplate;
+    @Autowired
+    TestService service;
+
+    @Test
+    public void test1() {
+        redisTemplate.opsForValue().set("joe", service.findUserById(1));
+    }
+
+    @Test
+    public void test2() {
+        Object joe = redisTemplate.opsForValue().get("joe");
+        log.info(FastJsonUtils.getBeanToJson(joe));
+    }
 
 }

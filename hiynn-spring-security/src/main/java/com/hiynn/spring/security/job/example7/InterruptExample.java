@@ -15,47 +15,43 @@ import java.util.Date;
  */
 @Slf4j
 public class InterruptExample {
-	public static void main(String[] args) throws SchedulerException {
+    public static void main(String[] args) throws SchedulerException {
 
-		Date startTime = DateBuilder.nextGivenSecondDate(null, 5);
+        Date startTime = DateBuilder.nextGivenSecondDate(null, 5);
 
-		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
-		JobDetail job = JobBuilder.newJob(DumbInterruptableJob.class).withIdentity("job1", "group1").build();
+        JobDetail job = JobBuilder.newJob(DumbInterruptableJob.class).withIdentity("job1", "group1").build();
 
-		SimpleTrigger trigger = (SimpleTrigger) TriggerBuilder.newTrigger()
-				.withIdentity("triagge1", "group1")
-				.withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(2).repeatForever())
-				.startAt(startTime)
-				.build();
-		Date ft = scheduler.scheduleJob(job, trigger);
+        SimpleTrigger trigger = (SimpleTrigger) TriggerBuilder.newTrigger()
+                .withIdentity("triagge1", "group1")
+                .withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(2).repeatForever())
+                .startAt(startTime)
+                .build();
+        Date ft = scheduler.scheduleJob(job, trigger);
 
-		log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
-				+ trigger.getRepeatInterval() / 1000 + " seconds");
+        log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
+                + trigger.getRepeatInterval() / 1000 + " seconds");
 
-		// start up the scheduler (jobs do not start to fire until
-		// the scheduler has been started)
-		scheduler.start();
+        // start up the scheduler (jobs do not start to fire until
+        // the scheduler has been started)
+        scheduler.start();
 
-		log.info("------- Starting loop to interrupt job every 7 seconds ----------");
-		for (int i = 0; i < 50; i++) {
-			try {
-				Thread.sleep(3000L);
-				// tell the scheduler to interrupt our job
-				scheduler.interrupt(job.getKey());
-			} catch (Exception e) {
-				//
-			}
-		}
+        log.info("------- Starting loop to interrupt job every 7 seconds ----------");
+        for (int i = 0; i < 50; i++) {
+            try {
+                Thread.sleep(3000L);
+                // tell the scheduler to interrupt our job
+                scheduler.interrupt(job.getKey());
+            } catch (Exception e) {
+                //
+            }
+        }
 
-		log.info("------- Shutting Down ---------------------");
+        log.info("------- Shutting Down ---------------------");
 
-		scheduler.shutdown(true);
-
-
+        scheduler.shutdown(true);
 
 
-
-
-	}
+    }
 }

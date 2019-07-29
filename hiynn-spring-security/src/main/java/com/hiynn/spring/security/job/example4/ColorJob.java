@@ -18,34 +18,33 @@ import java.util.Date;
 public class ColorJob implements Job {
 
 
-	public static final String FAVORITE_COLOR = "favorite color";
-	public static final String EXECUTION_COUNT = "count";
+    public static final String FAVORITE_COLOR = "favorite color";
+    public static final String EXECUTION_COUNT = "count";
 
-	// Since Quartz will re-instantiate a class every time it
-	// gets executed, members non-static member variables can
-	// not be used to maintain state!
-	private int _counter = 1;
+    // Since Quartz will re-instantiate a class every time it
+    // gets executed, members non-static member variables can
+    // not be used to maintain state!
+    private int _counter = 1;
 
-	public ColorJob() {
-	}
+    public ColorJob() {
+    }
 
 
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
+        String favoriteColor = jobDataMap.getString(FAVORITE_COLOR);
+        int count = jobDataMap.getInt(EXECUTION_COUNT);
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
-		String favoriteColor = jobDataMap.getString(FAVORITE_COLOR);
-		int count = jobDataMap.getInt(EXECUTION_COUNT);
+        JobKey jobKey = context.getJobDetail().getKey();
+        log.error("ColorJob: " + jobKey + " executing at " + new Date() + "\n" +
+                "  favorite color is " + favoriteColor + "\n" +
+                "  execution count (from job map) is " + count + "\n" +
+                "  execution count (from job member variable) is " + count);
 
-		JobKey jobKey = context.getJobDetail().getKey();
-		log.error("ColorJob: " + jobKey + " executing at " + new Date() + "\n" +
-				"  favorite color is " + favoriteColor + "\n" +
-				"  execution count (from job map) is " + count + "\n" +
-				"  execution count (from job member variable) is " + count);
+        count++;
+        jobDataMap.put(EXECUTION_COUNT, count);
 
-		count++;
-		jobDataMap.put(EXECUTION_COUNT, count);
-
-		_counter++;
-	}
+        _counter++;
+    }
 }

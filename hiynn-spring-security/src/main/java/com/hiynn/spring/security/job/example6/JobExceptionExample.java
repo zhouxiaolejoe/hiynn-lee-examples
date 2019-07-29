@@ -15,56 +15,54 @@ import java.util.Date;
  */
 @Slf4j
 public class JobExceptionExample {
-	public static void main(String[] args) throws SchedulerException {
-		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+    public static void main(String[] args) throws SchedulerException {
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
-		Date startStime = DateBuilder.nextGivenSecondDate(null, 15);
+        Date startStime = DateBuilder.nextGivenSecondDate(null, 15);
 
-		JobDetail job = JobBuilder.newJob(BadJob1.class)
-				.withIdentity("badJob1", "group1")
-				.usingJobData("denominator", "0")
-				.build();
-		// badJob1 will run every 10 seconds
-		// this job will throw an exception and refire
-		// immediately
-		SimpleTrigger trigger = (SimpleTrigger)TriggerBuilder
-				.newTrigger()
-				.withIdentity("trigger1", "group1")
-				.withSchedule(SimpleScheduleBuilder
-						.repeatSecondlyForever(10)
-						.repeatForever())
-				.build();
+        JobDetail job = JobBuilder.newJob(BadJob1.class)
+                .withIdentity("badJob1", "group1")
+                .usingJobData("denominator", "0")
+                .build();
+        // badJob1 will run every 10 seconds
+        // this job will throw an exception and refire
+        // immediately
+        SimpleTrigger trigger = (SimpleTrigger) TriggerBuilder
+                .newTrigger()
+                .withIdentity("trigger1", "group1")
+                .withSchedule(SimpleScheduleBuilder
+                        .repeatSecondlyForever(10)
+                        .repeatForever())
+                .build();
 
-		Date ft = scheduler.scheduleJob(job, trigger);
-		log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
-				+ trigger.getRepeatInterval() / 1000 + " seconds");
+        Date ft = scheduler.scheduleJob(job, trigger);
+        log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
+                + trigger.getRepeatInterval() / 1000 + " seconds");
 
-		job = JobBuilder.newJob(BadJob2.class)
-				.withIdentity("badJob2", "group1")
-				.build();
-		trigger = (SimpleTrigger) TriggerBuilder.newTrigger()
-				.withIdentity("trigger2", "group1")
-				.withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(5).repeatForever())
-				.build();
+        job = JobBuilder.newJob(BadJob2.class)
+                .withIdentity("badJob2", "group1")
+                .build();
+        trigger = (SimpleTrigger) TriggerBuilder.newTrigger()
+                .withIdentity("trigger2", "group1")
+                .withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(5).repeatForever())
+                .build();
 
-		ft = scheduler.scheduleJob(job, trigger);
+        ft = scheduler.scheduleJob(job, trigger);
 
-		log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
-				+ trigger.getRepeatInterval() / 1000 + " seconds");
-
-
+        log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
+                + trigger.getRepeatInterval() / 1000 + " seconds");
 
 
-		scheduler.start();
+        scheduler.start();
 
-		try {
-			Thread.sleep(30L * 1000L);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+        try {
+            Thread.sleep(30L * 1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
-		scheduler.shutdown(false);
+        scheduler.shutdown(false);
 
-	}
+    }
 }

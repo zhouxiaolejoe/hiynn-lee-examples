@@ -6,7 +6,7 @@ spring:
         username: joe
         password: 123456
   application:
-      name: hiynn-websocket
+    name: hiynn-websocket
   thymeleaf:
     mode: HTML5
     encoding: utf-8

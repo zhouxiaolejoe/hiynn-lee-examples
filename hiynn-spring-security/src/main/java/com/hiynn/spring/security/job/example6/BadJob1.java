@@ -16,28 +16,28 @@ import java.util.Date;
 @PersistJobDataAfterExecution
 @DisallowConcurrentExecution
 public class BadJob1 implements Job {
-	private int calculation;
+    private int calculation;
 
-	/**
-	 * Empty public constructor for job initialization
-	 */
-	public BadJob1() {
-	}
+    /**
+     * Empty public constructor for job initialization
+     */
+    public BadJob1() {
+    }
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		JobKey jobKey = context.getJobDetail().getKey();
-		//获取JobDataMap
-		JobDataMap map = context.getJobDetail().getJobDataMap();
-		int denominator = map.getInt("denominator");
-		log.error("---" + jobKey + " executing at " + new Date() + " with denominator " + denominator);
-		try {
-			calculation = 4815 / denominator;
-		} catch (Exception e) {
-			JobExecutionException exception = new JobExecutionException(e);
-			exception.setRefireImmediately(true);
-			throw exception;
-		}
-		log.info("---" + jobKey + " completed at " + new Date());
-	}
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        JobKey jobKey = context.getJobDetail().getKey();
+        //获取JobDataMap
+        JobDataMap map = context.getJobDetail().getJobDataMap();
+        int denominator = map.getInt("denominator");
+        log.error("---" + jobKey + " executing at " + new Date() + " with denominator " + denominator);
+        try {
+            calculation = 4815 / denominator;
+        } catch (Exception e) {
+            JobExecutionException exception = new JobExecutionException(e);
+            exception.setRefireImmediately(true);
+            throw exception;
+        }
+        log.info("---" + jobKey + " completed at " + new Date());
+    }
 }

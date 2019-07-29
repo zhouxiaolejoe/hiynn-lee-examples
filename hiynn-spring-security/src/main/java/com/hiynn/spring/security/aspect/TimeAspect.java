@@ -20,15 +20,15 @@ import java.util.Arrays;
 @Slf4j
 public class TimeAspect {
 
-	@Around("execution(* com.hiynn.spring.security.controller.*.*(..))")
-	public Object around(ProceedingJoinPoint point) throws Throwable {
-		log.info("time aspect start");
-		long start = System.currentTimeMillis();
-		Object proceed = point.proceed();
-		Object[] args = point.getArgs();
-		Arrays.stream(args).forEach(arg-> log.info(String.format("%s参数:%s",point.getSignature().getName(),arg)));
-		log.info(String.format("接口耗时:%s",System.currentTimeMillis()-start));
-		log.info("time aspect finish");
-		return proceed;
-	}
+    @Around("execution(* com.hiynn.spring.security.controller.*.*(..))")
+    public Object around(ProceedingJoinPoint point) throws Throwable {
+        log.info("time aspect start");
+        long start = System.currentTimeMillis();
+        Object proceed = point.proceed();
+        Object[] args = point.getArgs();
+        Arrays.stream(args).forEach(arg -> log.info(String.format("%s参数:%s", point.getSignature().getName(), arg)));
+        log.info(String.format("接口耗时:%s", System.currentTimeMillis() - start));
+        log.info("time aspect finish");
+        return proceed;
+    }
 }

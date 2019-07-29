@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,19 +18,19 @@ public class TPermission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="PERMISSION_ID",columnDefinition = "int(11) comment '权限id'")
+    @Column(name = "PERMISSION_ID", columnDefinition = "int(11) comment '权限id'")
     private Long permissionId;
 
-    @Column(name="PERMISSION_NAME",columnDefinition = "varchar(25) comment '权限名称'")
+    @Column(name = "PERMISSION_NAME", columnDefinition = "varchar(25) comment '权限名称'")
     private String permissionName;
 
-    @Column(name="URL",columnDefinition = "varchar(50) comment '权限url'")
+    @Column(name = "URL", columnDefinition = "varchar(50) comment '权限url'")
     private String url;
 
-    @Column(name="MENU",columnDefinition = "varchar(25) comment '前端权限菜单名'")
+    @Column(name = "MENU", columnDefinition = "varchar(25) comment '前端权限菜单名'")
     private String meau;
 
-    @Column(name="DESCRIPTION",columnDefinition = "varchar(200) comment '权限描述'")
+    @Column(name = "DESCRIPTION", columnDefinition = "varchar(200) comment '权限描述'")
     private String description;
     /**
      * 懒加载   快速查询 不会查询role表

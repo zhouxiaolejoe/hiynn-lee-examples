@@ -75,7 +75,7 @@ server:
 #  address: 10.0.92.127
 mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:generator/mapper/*.xml           #mybatis mapper.xml文件位置
-#  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
+  #  type-aliases-package:                                #配置别名包路径 (在mybatis配置文件中指定)
   config-location: classpath:mybatis-config.xml         #配置mybatis配置文件
   check-config-location: true
 #  configuration:

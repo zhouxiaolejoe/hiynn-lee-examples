@@ -12,5 +12,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 public class CustomManProperties {
-	private String name;
+    private String name;
 }

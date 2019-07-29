@@ -11,12 +11,12 @@ import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 /**
-* @Description  WebSocket事件监听
-* @Author ZhouXiaoLe
-* @Date  2019/7/19  11:09
-* @Param
-* @return
-**/
+ * @Description WebSocket事件监听
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/19  11:09
+ * @Param
+ * @return
+ **/
 @Component
 public class WebSocketEventListener {
 

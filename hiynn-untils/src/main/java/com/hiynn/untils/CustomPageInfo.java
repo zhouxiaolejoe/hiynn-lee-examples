@@ -8,12 +8,12 @@ import lombok.ToString;
 import java.util.List;
 
 /**
-* @Description  用于前端分页返回
-* @Author ZhouXiaoLe
-* @Date  2019/7/17  16:28
-* @Param 
-* @return 
-**/
+ * @Description 用于前端分页返回
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/17  16:28
+ * @Param
+ * @return
+ **/
 @Getter
 @Setter
 @ToString

@@ -12,15 +12,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TUserInfoServiceImpl implements TUserInfoService {
-	@Autowired
-	TUserInfoMapper userInfoMapper;
-	@Override
-	public long countByExample(TUserInfoExample example) {
-		return userInfoMapper.countByExample(example);
-	}
+    @Autowired
+    TUserInfoMapper userInfoMapper;
 
-	@Override
-	public TUserInfo selectByPrimaryKey(Integer id) {
-		return userInfoMapper.selectByPrimaryKey(id);
-	}
+    @Override
+    public long countByExample(TUserInfoExample example) {
+        return userInfoMapper.countByExample(example);
+    }
+
+    @Override
+    public TUserInfo selectByPrimaryKey(Integer id) {
+        return userInfoMapper.selectByPrimaryKey(id);
+    }
 }

@@ -18,13 +18,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TUser implements Serializable {
-	private Integer id;
-	private String account;
-	@JsonIgnore
-	private String password;
-	@JsonProperty("name")
-	private String username;
-	@JsonProperty("time")
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
-	private Date regTime;
+    private Integer id;
+    private String account;
+    @JsonIgnore
+    private String password;
+    @JsonProperty("name")
+    private String username;
+    @JsonProperty("time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date regTime;
 }

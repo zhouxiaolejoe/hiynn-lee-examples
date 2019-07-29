@@ -23,12 +23,13 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class HiynnAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-	@Autowired
-	ObjectMapper objectMapper;
-	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
-		log.info("登录成功");
-		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write(objectMapper.writeValueAsString(auth));
-	}
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
+        log.info("登录成功");
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().write(objectMapper.writeValueAsString(auth));
+    }
 }

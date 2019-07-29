@@ -10,7 +10,7 @@
         <!--解决返回值为null不显示的问题-->
         <setting name="callSettersOnNulls" value="true"/>
         <!--开启自动驼峰命名 即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射 -->
-        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
         <!-- 打印出sql语句 可在控制台查看-->
         <!--<setting name="logImpl" value="STDOUT_LOGGING" />-->
     </settings>
@@ -19,7 +19,7 @@
         <!--使用包扫描规范就是对应包装类的类名首字母变为小写-->
         <package name="com.hiynn.dynamic.datasource.entity"/>
     </typeAliases>
-    
+
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <!-- 分页参数合理化

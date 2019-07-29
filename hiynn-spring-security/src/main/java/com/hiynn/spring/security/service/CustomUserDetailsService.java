@@ -19,12 +19,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class CustomUserDetailsService implements UserDetailsService {
-	@Autowired
-	UserDao userDao;
+    @Autowired
+    UserDao userDao;
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		TUser user = userDao.findByUsername(username);
-		return user;
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        TUser user = userDao.findByUsername(username);
+        return user;
+    }
 }

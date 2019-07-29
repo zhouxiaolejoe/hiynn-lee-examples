@@ -13,6 +13,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("people")
 @Data
 public class CustomPropleProperties {
-	private CustomManProperties man = new CustomManProperties();
-	private CustomWomanProperties woman = new CustomWomanProperties();
+    private CustomManProperties man = new CustomManProperties();
+    private CustomWomanProperties woman = new CustomWomanProperties();
 }

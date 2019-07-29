@@ -14,6 +14,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TRole implements Serializable {
-	private Integer id;
-	private String name;
+    private Integer id;
+    private String name;
 }

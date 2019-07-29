@@ -15,10 +15,10 @@ import java.text.SimpleDateFormat;
  * @Date 2019-07-26 09:50
  */
 @Slf4j
-public class HelloJob  implements Job {
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		log.warn(format.format(System.currentTimeMillis()));
-	}
+public class HelloJob implements Job {
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        log.warn(format.format(System.currentTimeMillis()));
+    }
 }

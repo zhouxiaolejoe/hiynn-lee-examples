@@ -7,31 +7,32 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 /**
-* @Description
-* @Author ZhouXiaoLe
-* @Date  2019/7/17  17:16
-* @Param 
-* @return 
-**/
+ * @Description
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/17  17:16
+ * @Param
+ * @return
+ **/
 @Component
 @Slf4j
 public class ScheduleTask {
 
-	@Autowired
-	private SimpMessageSendingOperations messagingTemplate;
+    @Autowired
+    private SimpMessageSendingOperations messagingTemplate;
 
-	@Autowired
-	TestService testService;
+    @Autowired
+    TestService testService;
 
 
-	/**
-	* @Description  @Async多线程定时任务
-	* @Author ZhouXiaoLe
-	* @Date  2019/7/17  17:27
-	* @Param []
-	* @return void
-	**/
+    /**
+     * @Description  @Async多线程定时任务
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/17  17:27
+     * @Param []
+     * @return void
+     **/
 //	@Scheduled(cron = "0/2 * * * * *")
 //	@Async
 //	public void scheduled(){

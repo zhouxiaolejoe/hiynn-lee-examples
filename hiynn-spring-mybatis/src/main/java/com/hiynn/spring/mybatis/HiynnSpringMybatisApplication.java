@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class HiynnSpringMybatisApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HiynnSpringMybatisApplication.class, args);
-	}
-	@GetMapping("/getInfo")
-	public Object getInfo(){
+    public static void main(String[] args) {
+        SpringApplication.run(HiynnSpringMybatisApplication.class, args);
+    }
 
-		return "123";
-	}
+    @GetMapping("/getInfo")
+    public Object getInfo() {
+
+        return "123";
+    }
 
 }

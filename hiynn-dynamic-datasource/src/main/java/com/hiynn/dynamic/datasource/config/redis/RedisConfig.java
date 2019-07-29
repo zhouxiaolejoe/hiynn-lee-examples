@@ -19,59 +19,59 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import java.time.Duration;
 
 /**
-* @Description
-* @Author ZhouXiaoLe
-* @Date  2019/7/18  16:14
-* @Param 
-* @return 
-**/
+ * @Description
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/18  16:14
+ * @Param
+ * @return
+ **/
 @Configuration
 public class RedisConfig {
-	/**
-	* @Description  缓存功能序列化 K - V 序列化
-	* @Author ZhouXiaoLe
-	* @Date  2019/7/18  16:47
-	* @Param [redisConnectionFactory]
-	* @return org.springframework.cache.CacheManager
-	**/
-	@Bean("customCacheManager")
-	public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-		Jackson2JsonRedisSerializer<Object> redisValueSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-		ObjectMapper om = new ObjectMapper();
-		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-		redisValueSerializer.setObjectMapper(om);
+    /**
+     * @return org.springframework.cache.CacheManager
+     * @Description 缓存功能序列化 K - V 序列化
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/18  16:47
+     * @Param [redisConnectionFactory]
+     **/
+    @Bean("customCacheManager")
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        Jackson2JsonRedisSerializer<Object> redisValueSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        redisValueSerializer.setObjectMapper(om);
 
-		RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-				//序列化
-				.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisValueSerializer));
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+                //序列化
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisValueSerializer));
 //				.entryTtl(Duration.ofHours(1)); // 设置缓存有效期一小时
-		return RedisCacheManager
-				.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
-				.cacheDefaults(redisCacheConfiguration).build();
-	}
+        return RedisCacheManager
+                .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
+                .cacheDefaults(redisCacheConfiguration).build();
+    }
 
-	/**
-	* @Description redisTemplate K - V 序列化
-	* @Author ZhouXiaoLe
-	* @Date  2019/7/18  15:58
-	* @Param [factory]
-	* @return org.springframework.data.redis.core.RedisTemplate<java.lang.String,java.lang.String>
-	**/
-	@Bean
-	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+    /**
+     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String, java.lang.String>
+     * @Description redisTemplate K - V 序列化
+     * @Author ZhouXiaoLe
+     * @Date 2019/7/18  15:58
+     * @Param [factory]
+     **/
+    @Bean
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
 
-		StringRedisTemplate template = new StringRedisTemplate(factory);
-		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        StringRedisTemplate template = new StringRedisTemplate(factory);
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 
-		ObjectMapper om = new ObjectMapper();
-		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-		jackson2JsonRedisSerializer.setObjectMapper(om);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
 
-		template.setValueSerializer(jackson2JsonRedisSerializer);
-		template.setHashValueSerializer(jackson2JsonRedisSerializer);
-		template.afterPropertiesSet();
-		return template;
-	}
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
 }

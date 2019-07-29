@@ -14,48 +14,49 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "T_USER")
-public class TUser implements UserDetails{
+public class TUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID",columnDefinition = "int(11) comment '用户id'")
+    @Column(name = "USER_ID", columnDefinition = "int(11) comment '用户id'")
     private Long userId;
 
-    @Column(name = "USER_NAME",columnDefinition = "varchar(50) comment '用户名'", unique = true)
+    @Column(name = "USER_NAME", columnDefinition = "varchar(50) comment '用户名'", unique = true)
     private String username;
 
-    @Column(name = "PASSWORD",columnDefinition = "varchar(100) comment '密码'")
+    @Column(name = "PASSWORD", columnDefinition = "varchar(100) comment '密码'")
     private String password;
 
-    @Column(name = "FIRST_NAME",columnDefinition = "varchar(50) comment '姓'")
+    @Column(name = "FIRST_NAME", columnDefinition = "varchar(50) comment '姓'")
     private String firstName;
 
-    @Column(name = "LAST_NAME",columnDefinition = "varchar(50) comment '名'")
+    @Column(name = "LAST_NAME", columnDefinition = "varchar(50) comment '名'")
     private String lastName;
 
-    @Column(name = "UPDATE_TIME" )
+    @Column(name = "UPDATE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    @Column(name = "IS_ACCOUNT_NON_LOCKED",columnDefinition = "int(2) comment '账号是否锁定'")
+    @Column(name = "IS_ACCOUNT_NON_LOCKED", columnDefinition = "int(2) comment '账号是否锁定'")
     private Integer isAccountNonLocked;
 
-    @Column(name = "IS_ACCOUNT_NON_EXPIRED",columnDefinition = "int(2) comment '账号是否过期'")
+    @Column(name = "IS_ACCOUNT_NON_EXPIRED", columnDefinition = "int(2) comment '账号是否过期'")
     private Integer isAccountNonExpired;
 
-    @Column(name = "IS_CREDENTIALS_NON_EXPIRED",columnDefinition = "int(2) comment '凭证是否过期'")
+    @Column(name = "IS_CREDENTIALS_NON_EXPIRED", columnDefinition = "int(2) comment '凭证是否过期'")
     private Integer isCredentialsNonExpired;
 
-    @Column(name = "IS_ENABLED",columnDefinition = "int(2) comment '账号是否启用'")
+    @Column(name = "IS_ENABLED", columnDefinition = "int(2) comment '账号是否启用'")
     private Integer isEnabled;
 
-    @Column(name = "IS_DELETE",columnDefinition = "int(2) comment '账号是否删除'")
+    @Column(name = "IS_DELETE", columnDefinition = "int(2) comment '账号是否删除'")
     private Integer isDELETE;
 
     /**
@@ -69,14 +70,14 @@ public class TUser implements UserDetails{
     private List<TRole> roles;
 
     /**
-    * @Description 实现UserDetails 重写的方法
-    * @Method getAuthorities
-    * @param
-    * @return java.util.Collection<? extends org.springframework.security.core.GrantedAuthority>
-    * @throws
-    * @Author ZhouXiaoLe
-    * @Date  2019-07-23  04:14:38
-    **/
+     * @param
+     * @return java.util.Collection<? extends org.springframework.security.core.GrantedAuthority>
+     * @throws
+     * @Description 实现UserDetails 重写的方法
+     * @Method getAuthorities
+     * @Author ZhouXiaoLe
+     * @Date 2019-07-23  04:14:38
+     **/
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub

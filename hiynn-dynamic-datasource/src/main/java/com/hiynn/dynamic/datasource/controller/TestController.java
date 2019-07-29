@@ -28,96 +28,97 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* @Description
-* @Author ZhouXiaoLe
-* @Date  2019/7/17  15:14
-* @Param 
-* @return 
-**/
+ * @Description
+ * @Author ZhouXiaoLe
+ * @Date 2019/7/17  15:14
+ * @Param
+ * @return
+ **/
 @Slf4j
 @Api(tags = "swagger测试")
 @RestController
 public class TestController {
-	@Autowired
-	TestService testService;
-	@Autowired
-	TUserInfoService userInfoService;
+    @Autowired
+    TestService testService;
+    @Autowired
+    TUserInfoService userInfoService;
 
-	@GetMapping("/testFindUser/{id}")
-	@ApiOperation(value = "测试查找用户",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
-	})
-	public ResultBuilder<TUser> testFindUser(@PathVariable("id") Integer id){
-		TUserInfo userInfo = userInfoService.selectByPrimaryKey(id);
-		log.info(FastJsonUtils.getBeanToJson(userInfo));
-		return ResultBuilder.success(testService.findUserById(id));
-	}
+    @GetMapping("/testFindUser/{id}")
+    @ApiOperation(value = "测试查找用户", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
+    })
+    public ResultBuilder<TUser> testFindUser(@PathVariable("id") Integer id) {
+        TUserInfo userInfo = userInfoService.selectByPrimaryKey(id);
+        log.info(FastJsonUtils.getBeanToJson(userInfo));
+        return ResultBuilder.success(testService.findUserById(id));
+    }
 
-	@GetMapping("/testFindRole/{id}")
-	@ApiOperation(value = "测试查找角色",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
-	})
-	public ResultBuilder<TRole> testFindRole(@PathVariable("id") Integer id, HttpServletRequest request){
-		HttpSession session = request.getSession();
-		if (session.getAttribute("user") == null) {
-			session.setAttribute("user", "zhangsan");
-			log.info("The session does not exist");
-		} else {
-			log.info("The session is"+"["+session.getAttribute("user")+"]");
-		}
-		return ResultBuilder.success(testService.findRoleById(id));
-	}
+    @GetMapping("/testFindRole/{id}")
+    @ApiOperation(value = "测试查找角色", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path")
+    })
+    public ResultBuilder<TRole> testFindRole(@PathVariable("id") Integer id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("user", "zhangsan");
+            log.info("The session does not exist");
+        } else {
+            log.info("The session is" + "[" + session.getAttribute("user") + "]");
+        }
+        return ResultBuilder.success(testService.findRoleById(id));
+    }
 
-	@GetMapping("/insertRole")
-	@ApiOperation(value = "测试新增角色",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	public ResultBuilder insertRole(){
-		testService.insertRole();
-		return ResultBuilder.success();
-	}
+    @GetMapping("/insertRole")
+    @ApiOperation(value = "测试新增角色", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "GET")
+    public ResultBuilder insertRole() {
+        testService.insertRole();
+        return ResultBuilder.success();
+    }
 
-	@PostMapping("/insertUser")
-	@ApiOperation(value = "测试新增用户",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "POST")
-	public ResultBuilder insertUser(@Validated(value = GroupVaild.SaveGroup.class)@RequestBody UserDTO userDTO){
-		return ResultBuilder.success(testService.insertUser(userDTO));
-	}
-	@PutMapping("/updatetUser")
-	@ApiOperation(value = "测试修改用户",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "PUT")
-	public ResultBuilder updateUser(@Validated(value = GroupVaild.UpdateGroup.class)@RequestBody UserDTO userDTO){
-		return ResultBuilder.success(testService.updatetUser(userDTO));
-	}
+    @PostMapping("/insertUser")
+    @ApiOperation(value = "测试新增用户", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
+    public ResultBuilder insertUser(@Validated(value = GroupVaild.SaveGroup.class) @RequestBody UserDTO userDTO) {
+        return ResultBuilder.success(testService.insertUser(userDTO));
+    }
 
-	@GetMapping("/testUrlParam/{id}")
-	@ApiOperation(value = "测试url传参数",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path"),
-			@ApiImplicitParam(name = "date", value = "日期", required = false, dataType = "string", paramType = "query")})
-	public ResultBuilder<List> testUrlParam(@PathVariable("id") Integer id, String date){
-		return ResultBuilder.success(Arrays.asList(id,date));
-	}
+    @PutMapping("/updatetUser")
+    @ApiOperation(value = "测试修改用户", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "PUT")
+    public ResultBuilder updateUser(@Validated(value = GroupVaild.UpdateGroup.class) @RequestBody UserDTO userDTO) {
+        return ResultBuilder.success(testService.updatetUser(userDTO));
+    }
 
-	@PostMapping("/testJsonParam")
-	@ApiOperation(value = "测试json传参数",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "POST")
-	public ResultBuilder<List<TUser>> testJsonParam(@Validated(value = GroupVaild.SaveGroup.class)@RequestBody UserDTO userDTO){
-		TUser user = TUser.builder().build();
-		BeanUtils.copyProperties(userDTO, user);
-		return ResultBuilder.success(Arrays.asList(user));
-	}
-	
-	@GetMapping("/testOkhttp3Get")
-	@ApiOperation(value = "测试Okhttp3Get",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "GET")
-	public ResultBuilder testOdetta3Get(String id1,String name){
+    @GetMapping("/testUrlParam/{id}")
+    @ApiOperation(value = "测试url传参数", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Integer", paramType = "path"),
+            @ApiImplicitParam(name = "date", value = "日期", required = false, dataType = "string", paramType = "query")})
+    public ResultBuilder<List> testUrlParam(@PathVariable("id") Integer id, String date) {
+        return ResultBuilder.success(Arrays.asList(id, date));
+    }
 
-		String result = OkHttpUtil.getStringFromServer("http://localhost:8080/dynamic_db/testFindRole/1");
-		Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
-		log.info(FastJsonUtils.getBeanToJson(resultMap));
-		return ResultBuilder.success(resultMap.get("result"));
-	}
+    @PostMapping("/testJsonParam")
+    @ApiOperation(value = "测试json传参数", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
+    public ResultBuilder<List<TUser>> testJsonParam(@Validated(value = GroupVaild.SaveGroup.class) @RequestBody UserDTO userDTO) {
+        TUser user = TUser.builder().build();
+        BeanUtils.copyProperties(userDTO, user);
+        return ResultBuilder.success(Arrays.asList(user));
+    }
 
-	@PostMapping("/testOkhttp3Post")
-	@ApiOperation(value = "测试Okhttp3Post",produces = MediaType.APPLICATION_JSON_VALUE,httpMethod = "POST")
-	public ResultBuilder testOkhttp3Post(@Validated(value = GroupVaild.SaveGroup.class)@RequestBody UserDTO parameters){
+    @GetMapping("/testOkhttp3Get")
+    @ApiOperation(value = "测试Okhttp3Get", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "GET")
+    public ResultBuilder testOdetta3Get(String id1, String name) {
+
+        String result = OkHttpUtil.getStringFromServer("http://localhost:8080/dynamic_db/testFindRole/1");
+        Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
+        log.info(FastJsonUtils.getBeanToJson(resultMap));
+        return ResultBuilder.success(resultMap.get("result"));
+    }
+
+    @PostMapping("/testOkhttp3Post")
+    @ApiOperation(value = "测试Okhttp3Post", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
+    public ResultBuilder testOkhttp3Post(@Validated(value = GroupVaild.SaveGroup.class) @RequestBody UserDTO parameters) {
 //		Map<String, String> parameters = new HashMap<String, String>() {
 //			{
 //				put("account", "joe");
@@ -125,9 +126,9 @@ public class TestController {
 //				put("username", "zxl");
 //			}
 //		};
-		String result = OkHttpUtil.getStringFromServerByPost("http://localhost:8080/dynamic_db/testJsonParam", FastJsonUtils.getBeanToJson(parameters));
-		Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
-		log.info(FastJsonUtils.getBeanToJson(resultMap));
-		return ResultBuilder.success(resultMap.get("result"));
-	}
+        String result = OkHttpUtil.getStringFromServerByPost("http://localhost:8080/dynamic_db/testJsonParam", FastJsonUtils.getBeanToJson(parameters));
+        Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
+        log.info(FastJsonUtils.getBeanToJson(resultMap));
+        return ResultBuilder.success(resultMap.get("result"));
+    }
 }

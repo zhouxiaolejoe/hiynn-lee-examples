@@ -21,15 +21,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //	@Autowired
 //	private StaticPagePathFinder staticPagePathFinder;
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
 
-		registry.addViewController("/customLogin").setViewName("customLogin.html");
-		registry.addViewController("/demoLogin").setViewName("demoLogin.html");
-
-
-
-
+        registry.addViewController("/customLogin").setViewName("customLogin.html");
+        registry.addViewController("/demoLogin").setViewName("demoLogin.html");
 
 
 //		try{
@@ -45,5 +41,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //			throw new RuntimeException("Unable to locate static pages:"+e.getMessage(),e);
 //		}
 
-	}
+    }
 }

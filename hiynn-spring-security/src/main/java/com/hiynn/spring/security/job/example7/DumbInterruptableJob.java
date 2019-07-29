@@ -17,45 +17,45 @@ import java.util.Date;
 @Slf4j
 public class DumbInterruptableJob implements InterruptableJob {
 
-	// has the job been interrupted?
-	private boolean _interrupted = false;
+    // has the job been interrupted?
+    private boolean _interrupted = false;
 
-	public DumbInterruptableJob() {
-	}
+    public DumbInterruptableJob() {
+    }
 
-	// job name
-	private JobKey _jobKey = null;
+    // job name
+    private JobKey _jobKey = null;
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		_jobKey = context.getJobDetail().getKey();
-		log.error("---- " + _jobKey + " 执行中... " + new Date());
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        _jobKey = context.getJobDetail().getKey();
+        log.error("---- " + _jobKey + " 执行中... " + new Date());
 
-		try {
-			for (int i = 0; i < 4; i++) {
-				try {
-					Thread.sleep(1000L);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				//检查我们是否被打扰了
-				if (_interrupted){
-					log.error("--- " + _jobKey + "  -- 打断... bailing out!");
-					return;
-				}
-			}
-		} finally {
+        try {
+            for (int i = 0; i < 4; i++) {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //检查我们是否被打扰了
+                if (_interrupted) {
+                    log.error("--- " + _jobKey + "  -- 打断... bailing out!");
+                    return;
+                }
+            }
+        } finally {
 
-			log.error("---- " + _jobKey + " 完成 " + new Date());
+            log.error("---- " + _jobKey + " 完成 " + new Date());
 
-		}
+        }
 
-	}
+    }
 
-	//此方法中断作业
-	@Override
-	public void interrupt() throws UnableToInterruptJobException {
-		log.info("---" + _jobKey + "  -- 打断 --");
-		_interrupted = true;
-	}
+    //此方法中断作业
+    @Override
+    public void interrupt() throws UnableToInterruptJobException {
+        log.info("---" + _jobKey + "  -- 打断 --");
+        _interrupted = true;
+    }
 }

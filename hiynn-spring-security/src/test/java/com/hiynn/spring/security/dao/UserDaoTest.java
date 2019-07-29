@@ -23,26 +23,27 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserDaoTest {
-	@Autowired
-	UserDao userDao;
+    @Autowired
+    UserDao userDao;
 
-	@Test
-	public void findByUsername(){
-		TUser user = userDao.findByUsername("joe");
-		log.error(FastJsonUtils.getBeanToJson(user));
+    @Test
+    public void findByUsername() {
+        TUser user = userDao.findByUsername("joe");
+        log.error(FastJsonUtils.getBeanToJson(user));
 
-	}
-//	@Test
+    }
+
+    //	@Test
 //	public void findByUserId(){
 //		TUser user = userDao.findByUserId(1L);
 //		log.error(FastJsonUtils.getBeanToJson(user));
 //		String encode = new BCryptPasswordEncoder().encode("123456");
 //		System.err.println(encode);
 //	}
-	@Test
-	public void findByUserId1(){
-		String encode = new BCryptPasswordEncoder().encode("123456");
-		System.err.println(encode);
-	}
+    @Test
+    public void findByUserId1() {
+        String encode = new BCryptPasswordEncoder().encode("123456");
+        System.err.println(encode);
+    }
 
 }
