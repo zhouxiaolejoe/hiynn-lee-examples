@@ -3,9 +3,10 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
   quartz:
     jdbc:
-      initialize-schema: EMBEDDED
+#      initialize-schema: EMBEDDED
       schema: classpath:quartz/tables_mysql.sql
     job-store-type: jdbc
     properties:
@@ -14,6 +15,7 @@ spring:
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
             threadCount: 5
+            threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true
           scheduler:
             instanceName: HiynnScheduler
@@ -27,24 +29,3 @@ spring:
             misfireThreshold: 60000
             isClustered: true
             useProperties: true
-
-#          dataSource:
-#            HIYNN:
-#              driver: com.mysql.cj.jdbc.Driver
-#              URL: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
-#              user:
-#              password:
-#              maxConnections: 10
-#              idleConnectionValidationSeconds: 50
-#              validateOnCheckout: false
-
-#quartz:
-#  datasource:
-#    hiynn:
-#      driver: com.mysql.cj.jdbc.Driver
-#      jdbcUrl: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
-#      user: root
-#      password: 123456
-#      maxConnections: 10
-#      idleConnectionValidationSeconds: 50
-#      validateOnCheckout: false
