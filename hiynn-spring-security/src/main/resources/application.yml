@@ -16,42 +16,6 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: true
-  quartz:
-    jdbc:
-      initialize-schema: EMBEDDED
-      schema: classpath:quartz/tables_mysql.sql
-    job-store-type: jdbc
-    properties:
-      org:
-        quartz:
-          threadPool:
-            class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 5
-            threadsInheritContextClassLoaderOfInitializingThread: true
-          scheduler:
-            instanceName: HiynnScheduler
-            instanceId: AUTO
-            idleWaitTime: 5000
-            threadName: HIYNN
-          jobStore:
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-            dataSource: HIYNN
-            misfireThreshold: 60000
-            isClustered: true
-            useProperties: true
-
-#          dataSource:
-#            HIYNN:
-#              driver: com.mysql.cj.jdbc.Driver
-#              URL: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
-#              user:
-#              password:
-#              maxConnections: 10
-#              idleConnectionValidationSeconds: 50
-#              validateOnCheckout: false
-
-
 hiynn:
   security:
     browser:
@@ -61,14 +25,3 @@ people:
     name: nv
   man:
     name: nan
-
-quartz:
-  datasource:
-    hiynn:
-      driver: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
-      user: root
-      password: 123456
-      maxConnections: 10
-      idleConnectionValidationSeconds: 50
-      validateOnCheckout: false
