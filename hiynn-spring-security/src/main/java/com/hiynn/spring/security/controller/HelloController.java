@@ -1,18 +1,13 @@
 package com.hiynn.spring.security.controller;
 
 import com.hiynn.spring.security.properties.CustomPropleProperties;
-import com.hiynn.untils.ResultBuilder;
+import com.hiynn.spring.security.untils.ResultBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.Trigger;
-import org.springframework.scheduling.TriggerContext;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.Callable;
 
 /**

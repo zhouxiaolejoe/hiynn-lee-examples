@@ -1,7 +1,7 @@
 package com.hiynn.dynamic.datasource.service;
 
 import com.hiynn.dynamic.datasource.okhttp3.OkHttpUtil;
-import com.hiynn.untils.FastJsonUtils;
+import com.hiynn.dynamic.datasource.untils.FastJsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import org.junit.Assert;

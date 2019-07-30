@@ -1,7 +1,7 @@
 package com.hiynn.spring.security.config;
 
 import com.hiynn.spring.security.config.properties.SecurityProperties;
-import com.hiynn.untils.ResultBuilder;
+import com.hiynn.spring.security.untils.ResultBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

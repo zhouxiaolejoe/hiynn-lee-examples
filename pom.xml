@@ -21,7 +21,6 @@
         <module>hiynn-spring-admin</module>
         <module>hiynn-spring-mybatis</module>
         <module>hiynn-spring-security</module>
-        <module>hiynn-untils</module>
         <module>hiynn-spring-quartz</module>
     </modules>
     <properties>
@@ -191,6 +190,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.hiynn.dynamic.datasource.HiynnDynamicDatasourceApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,6 @@
 package com.hiynn.dynamic.datasource.service;
 
-import com.hiynn.untils.FastJsonUtils;
+import com.hiynn.dynamic.datasource.untils.FastJsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

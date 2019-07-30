@@ -1,4 +1,4 @@
-package com.hiynn.untils;
+package com.hiynn.spring.quartz.untils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;

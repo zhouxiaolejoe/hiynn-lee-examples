@@ -1,4 +1,4 @@
-package com.hiynn.untils;
+package com.hiynn.spring.quartz.untils;
 
 import lombok.Data;
 

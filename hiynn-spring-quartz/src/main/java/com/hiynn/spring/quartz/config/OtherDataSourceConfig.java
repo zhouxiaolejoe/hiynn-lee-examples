@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -26,10 +27,10 @@ import javax.sql.DataSource;
  */
 @Slf4j
 @Configuration
-@MapperScan(basePackages = {"com.hiynn.spring.quartz.mapper.quartz"},sqlSessionFactoryRef = "customQuartzSqlSessionFactory")
-public class QuartzConfig {
+@MapperScan(basePackages = {"com.hiynn.spring.quartz.mapper.other"},sqlSessionFactoryRef = "otherSqlSessionFactory")
+public class OtherDataSourceConfig {
 
-    private static final String localMapper = "classpath:mapper/**/*.xml";
+    private static final String otherLocalMapper = "classpath:mapper/**/*.xml";
 
     /**
     * @Description 配置quartz单独数据源
@@ -38,33 +39,28 @@ public class QuartzConfig {
     * @Author ZhouXiaoLe
     * @Date  2019-07-30  14:20:24
     **/
-    @Bean("customQuartzDataSource")
-    @QuartzDataSource
-    @Primary
-    @ConfigurationProperties("spring.quartz.properties.org.quartz.datasource")
+    @Bean("otherDataSource")
+    @ConfigurationProperties("spring.datasource.other")
     public DataSource dataSource(){
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "customQuartzSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory buildSqlSessionFactory(@Qualifier("customQuartzDataSource") DataSource dataSource) throws  Exception {
+    @Bean(name = "otherSqlSessionFactory")
+    public SqlSessionFactory buildSqlSessionFactory(@Qualifier("otherDataSource") DataSource dataSource) throws  Exception {
         SqlSessionFactoryBean bean;
         bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(QuartzConfig.localMapper));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(OtherDataSourceConfig.otherLocalMapper));
         return bean.getObject();
     }
 
-    @Bean(name = "customQuartzTransaction")
-    @Primary
-    public DataSourceTransactionManager buildTransactionManager(@Qualifier("customQuartzDataSource") DataSource dataSource) {
+    @Bean(name = "otherTransaction")
+    public DataSourceTransactionManager buildTransactionManager(@Qualifier("otherDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean(name = "quartzSqlSqlSessionTemplate")
-    @Primary
-    public SqlSessionTemplate buildSqlSessionTemplate(@Qualifier("customQuartzSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    @Bean(name = "otherSqlSessionTemplate")
+    public SqlSessionTemplate buildSqlSessionTemplate(@Qualifier("otherSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

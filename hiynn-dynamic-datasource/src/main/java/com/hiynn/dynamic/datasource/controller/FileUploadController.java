@@ -1,6 +1,6 @@
 package com.hiynn.dynamic.datasource.controller;
 
-import com.hiynn.untils.ResultBuilder;
+import com.hiynn.dynamic.datasource.untils.ResultBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -80,15 +80,15 @@ public class FileUploadController {
     }
 
     /**
-     * @param request
-     * @param file
-     * @return java.lang.String
-     * @throws i
-     * @Description
-     * @Method FileUtil
-     * @Author ZhouXiaoLe
-     * @Date 2019-07-23  10:32:43
-     **/
+    * @Description
+    * @Method FileUtil
+    * @Param request
+    * @Param file
+    * @return java.lang.String
+    * @throws
+    * @Author ZhouXiaoLe
+    * @Date  2019-07-30  21:53:23
+    **/
     private String FileUtil(HttpServletRequest request, MultipartFile file) throws IOException {
         //生成文件名
         String filePrefix = UUID.randomUUID().toString().replaceAll("-", "");
