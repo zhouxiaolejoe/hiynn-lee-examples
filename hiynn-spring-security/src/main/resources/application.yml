@@ -21,25 +21,25 @@ spring:
       initialize-schema: EMBEDDED
       schema: classpath:quartz/tables_mysql.sql
     job-store-type: jdbc
-#    properties:
-#      org:
-#        quartz:
-#          threadPool:
-#            class: org.quartz.simpl.SimpleThreadPool
-#            threadCount: 5
-#            threadsInheritContextClassLoaderOfInitializingThread: true
-#          scheduler:
-#            instanceName: HiynnScheduler
-#            instanceId: AUTO
-#            idleWaitTime: 5000
-#            threadName: HIYNN
-#          jobStore:
-#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-#            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-#            dataSource: HIYNN
-#            misfireThreshold: 60000
-#            isClustered: true
-#            useProperties: true
+    properties:
+      org:
+        quartz:
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          scheduler:
+            instanceName: HiynnScheduler
+            instanceId: AUTO
+            idleWaitTime: 5000
+            threadName: HIYNN
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            dataSource: HIYNN
+            misfireThreshold: 60000
+            isClustered: true
+            useProperties: true
 
 #          dataSource:
 #            HIYNN:

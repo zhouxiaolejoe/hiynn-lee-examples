@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @SpringBootApplication
 @Controller
-@EnableScheduling
 public class HiynnSpringSecurityApplication {
 
     public static void main(String[] args) {
