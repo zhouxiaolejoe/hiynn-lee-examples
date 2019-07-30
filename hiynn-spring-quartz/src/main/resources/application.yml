@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.238.101:3306/test3?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   quartz:
     jdbc:
@@ -29,3 +29,8 @@ spring:
             misfireThreshold: 60000
             isClustered: true
             useProperties: true
+          datasource:
+            username: root
+            password: 123456
+            jdbcUrl: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
+            driver-class-name: com.mysql.cj.jdbc.Driver
