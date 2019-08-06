@@ -14,8 +14,8 @@
     <div id="conversationDiv">
         <label>输入你的名字</label><input type="text" id="name"/>
         <button id="sendName" onclick="sendName();">发送</button>
-        <div id="response">
-        </div>
+        <p id="response" style="font-size: 16px">
+        </p>
     </div>
 </div>
 <script src="sockjs.min.js"></script>
@@ -32,7 +32,7 @@
     }
 
     function connect() {
-        var socket = new SockJS('http://127.0.0.1:8080/ws'); //1
+        var socket = new SockJS('http://127.0.0.1:8082/ws'); //1
         stompClient = Stomp.over(socket);//2
         stompClient.connect({}, function (frame) {//3
             setConnected(true);

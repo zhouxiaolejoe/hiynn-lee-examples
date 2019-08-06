@@ -26,7 +26,7 @@ spring:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             dataSource: HIYNN
-            misfireThreshold: 60000
+            misfireThreshold: 5000 #导致重新启动执行错过的时间设置10s以下
             isClustered: true
             useProperties: true
           datasource:
@@ -34,6 +34,8 @@ spring:
             password: 123456
             jdbcUrl: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
             driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: test
 logging:
   config: classpath:logback-spring.xml
 

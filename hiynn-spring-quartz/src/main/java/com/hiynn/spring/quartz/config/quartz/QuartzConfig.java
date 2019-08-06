@@ -1,4 +1,4 @@
-package com.hiynn.spring.quartz.config;
+package com.hiynn.spring.quartz.config.quartz;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -67,4 +67,5 @@ public class QuartzConfig {
     public SqlSessionTemplate buildSqlSessionTemplate(@Qualifier("customQuartzSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+
 }

@@ -25,14 +25,15 @@
         </javaModelGenerator>
 
 
-        <!--指定DaoMapper生成的位置 mapper.java-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/mapper/quartz">
+        <!--指定mapper.xml生成的位置 -->
+        <sqlMapGenerator targetPackage="quartz" targetProject="src/main/resources/mapper">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <!--table是指定每个表的生成策略-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hiynn.spring.quartz.mapper.quartz"
-                             targetProject="src/main/java">
+        <!--指定DaoMapper生成的位置 mapper.java-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.hiynn.spring.quartz.mapper.quartz"
+                             targetProject="src/main/java/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

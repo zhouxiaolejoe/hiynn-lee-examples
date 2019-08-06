@@ -3,13 +3,7 @@ package com.hiynn.websocket.schedule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.beans.SimpleBeanInfo;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @Description
@@ -33,14 +27,14 @@ public class ScheduleTask {
      * @Date 2019/7/17  17:27
      * @Param []
      **/
-    @Scheduled(cron = "0/1 * * * * *")
-    @Async
-    public void scheduled() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String time = format.format(new Date());
-        log.info("=====>>>>>使用cron  {}", time);
-        messagingTemplate.convertAndSend("/topic/public", time);
-    }
+//    @Scheduled(cron = "0/1 * * * * *")
+//    @Async
+//    public void scheduled() {
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String time = format.format(new Date());
+//        log.info("=====>>>>>使用cron  {}", time);
+//        messagingTemplate.convertAndSend("/topic/public", time);
+//    }
 //	@Scheduled(fixedRate = 5000)
 //	@Async
 //	public void scheduled1() {
