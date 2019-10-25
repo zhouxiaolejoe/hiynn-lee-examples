@@ -1,6 +1,5 @@
 package com.hiynn.dynamic.datasource.config.datasource;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,10 +12,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import java.util.Arrays;
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-import javax.sql.DataSource;
 
 /**
  * @Description 创建数据源
@@ -91,6 +89,13 @@ public class DataSourceConfig implements EnvironmentAware {
      **/
     @Bean
     public PlatformTransactionManager transactionManager() {
+        /**
+         * 基于cglibd动态代理的申明式事务
+         */
+//        DataSourceTransactionManager txManager = new DataSourceTransactionManager(dynamicDataSource());
+//        AnnotationTransactionAspect.aspectOf().setTransactionManager(txManager);
+        
+        
         return new DataSourceTransactionManager(dynamicDataSource());
     }
 
@@ -98,4 +103,17 @@ public class DataSourceConfig implements EnvironmentAware {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+//    @Autowired
+//    TransactionTemplate transactionTemplate;
+//
+//    public void test(){
+//        transactionTemplate.execute(new TransactionCallback<Object>() {
+//            @Override
+//            public Object doInTransaction(TransactionStatus status) {
+//                return null;
+//            }
+//        });
+//    }
+
 }

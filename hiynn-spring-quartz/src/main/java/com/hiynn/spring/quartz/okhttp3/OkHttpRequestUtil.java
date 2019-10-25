@@ -30,7 +30,8 @@ public class OkHttpRequestUtil {
      * @return okhttp3.Request
      **/
     public static Request buildPostJsonRequest(String url, String jsonStr) {
-        RequestBody requestBody = RequestBody.create(TYPE_JSON, jsonStr);
+//        RequestBody requestBody = RequestBody.create(TYPE_JSON, jsonStr);
+        RequestBody requestBody = RequestBody.create(jsonStr.getBytes(), TYPE_JSON);
         Request request = new Request.Builder().url(url).post(requestBody)
                 .build();
         return request;

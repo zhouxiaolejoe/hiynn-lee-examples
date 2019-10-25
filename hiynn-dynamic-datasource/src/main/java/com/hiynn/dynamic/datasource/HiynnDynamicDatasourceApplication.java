@@ -1,9 +1,7 @@
 package com.hiynn.dynamic.datasource;
 
-import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @Description exclude = DataSourceAutoConfiguration.class 排除数据库自动init

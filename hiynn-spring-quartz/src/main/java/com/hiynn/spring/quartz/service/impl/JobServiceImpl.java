@@ -1,6 +1,6 @@
 package com.hiynn.spring.quartz.service.impl;
 
-import com.hiynn.spring.quartz.DTO.QuartzJobDTO;
+import com.hiynn.spring.quartz.dto.QuartzJobDTO;
 import com.hiynn.spring.quartz.entity.quartz.QrtzJobDetails;
 import com.hiynn.spring.quartz.entity.quartz.QrtzJobDetailsExample;
 import com.hiynn.spring.quartz.job.MyJob;
@@ -24,6 +24,8 @@ import java.util.List;
 @Slf4j
 @Service
 public class JobServiceImpl implements JobService {
+
+
     @Autowired
     QrtzJobDetailsMapper qrtzJobDetailsMapper;
 

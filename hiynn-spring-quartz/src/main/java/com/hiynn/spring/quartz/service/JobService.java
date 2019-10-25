@@ -1,6 +1,6 @@
 package com.hiynn.spring.quartz.service;
 
-import com.hiynn.spring.quartz.DTO.QuartzJobDTO;
+import com.hiynn.spring.quartz.dto.QuartzJobDTO;
 import com.hiynn.spring.quartz.entity.quartz.QrtzJobDetails;
 import com.hiynn.spring.quartz.entity.quartz.QrtzJobDetailsExample;
 import com.hiynn.spring.quartz.untils.ResultBuilder;

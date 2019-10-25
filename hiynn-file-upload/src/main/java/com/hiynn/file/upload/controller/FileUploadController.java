@@ -1,5 +1,6 @@
 package com.hiynn.file.upload.controller;
 
+import com.hiynn.file.upload.untils.FTPUtil;
 import com.hiynn.file.upload.untils.ResultBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -21,6 +22,13 @@ import java.util.UUID;
 public class FileUploadController {
     @Value("${upload.file.path}")
     public String uploadPath;
+
+    @PostMapping("/uploadFtp")
+    public ResultBuilder uploadFtp(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
+        FTPUtil ftpUtil = new FTPUtil();
+        ftpUtil.uploadLocalStream("dinging/",file,file.getOriginalFilename());
+        return ResultBuilder.success();
+    }
 
     @PostMapping("/upload")
     public ResultBuilder uploadFile(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {

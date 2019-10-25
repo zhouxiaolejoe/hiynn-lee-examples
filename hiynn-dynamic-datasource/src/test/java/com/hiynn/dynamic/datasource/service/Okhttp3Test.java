@@ -7,22 +7,30 @@ import okhttp3.HttpUrl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 public class Okhttp3Test {
+    @Autowired
+    RestTemplate restTemplate;
+
     @Test
     public void testOkhttp3Get() {
-        String result = OkHttpUtil.getStringFromServer("http://localhost:8080/dynamic_db/testFindRole");
-        Assert.assertNotNull(result);
-        Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
-        log.info(FastJsonUtils.getBeanToJson(resultMap));
+        restTemplate.getForEntity("http://localhost:8080/dynamic_db/testFindRole", List.class);
+
+//        String result = OkHttpUtil.getStringFromServer("http://localhost:8080/dynamic_db/testFindRole");
+//        Assert.assertNotNull(result);
+//        Map<Object, Object> resultMap = FastJsonUtils.getJsonToMap(result);
+//        log.info(FastJsonUtils.getBeanToJson(resultMap));
     }
 
     @Test

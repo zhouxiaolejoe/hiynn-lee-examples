@@ -1,4 +1,4 @@
-package com.hiynn.spring.quartz.DTO;
+package com.hiynn.spring.quartz.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

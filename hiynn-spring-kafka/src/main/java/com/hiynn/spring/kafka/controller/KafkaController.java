@@ -2,6 +2,7 @@ package com.hiynn.spring.kafka.controller;
 
 import com.hiynn.spring.kafka.utils.JdbcProperties;
 import com.hiynn.spring.kafka.utils.MysqlDumpUntil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @ClassName KafkaController
@@ -21,6 +23,7 @@ import java.util.Arrays;
  * @Version 1.0.0
  */
 @RestController
+@Slf4j
 public class KafkaController {
     @Autowired
     KafkaAdmin admin;
@@ -43,15 +46,56 @@ public class KafkaController {
 
     @GetMapping("/exportCommand")
     public void exportCommand() throws IOException {
-        JdbcProperties properties = JdbcProperties.builder()
-                .host("localhost")
-                .port("3306")
-                .username("root")
-                .password("123456")
-                .exportDataBase("test")
-                .exportPath("d:/database.sql")
-                .build();
-        MysqlDumpUntil.export(properties);
+        /**
+         * 导出语句
+         */
+        List<String> list = Arrays.asList(
+                "mysqldump",
+                "-hlocalhost",
+                "-P3306",
+                "-uroot",
+                "-p123456",
+                "test",
+                "-r",
+                "d:/database.sql"
+        );
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        /**
+         * 设置导出语句
+         */
+        processBuilder.command(list);
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    long startTime = System.currentTimeMillis();
+                    int errCode = process.waitFor();
+                    long endTime = System.currentTimeMillis();
+                    String time = "耗时: "+((endTime-startTime)/1000)+"秒";
+                    log.info(time);
+                    log.info("command executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+                    if (errCode==0){
+                        kafkaTemplate.send("topic1","数据库导出完成  "+time);
+                    }
+                    log.error("数据库导出完成");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
+//        JdbcProperties properties = JdbcProperties.builder()
+//                .host("localhost")
+//                .port("3306")
+//                .username("root")
+//                .password("123456")
+//                .exportDataBase("test")
+//                .exportPath("d:/database.sql")
+//                .build();
+//        MysqlDumpUntil.export(properties);
     }
 
     @GetMapping("/importCommand")

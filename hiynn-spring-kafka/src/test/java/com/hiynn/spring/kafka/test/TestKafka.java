@@ -17,6 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +40,27 @@ public class TestKafka {
     @Autowired
     KafkaAdmin admin;
     @Test
+    public void testKafka(){
+        File file = new File("C:\\Users\\Lenovo\\Desktop\\new 1.yml");
+        BufferedInputStream is = null;
+        try {
+            is = new BufferedInputStream (new FileInputStream(file));
+            int len = 0;
+            byte[] b = new byte[1024];
+            while ((len = is.read(b)) != -1) {
+                //将读取的字节转为字符串对象
+                String chunk = new String(b, 0, len);
+                kafkaTemplate.send("topic1",chunk);
+            }
+//        kafkaTemplate.send("topic1", msg);
+        } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+    }
+
+
+    @Test
     public void testAdmin(){
         AdminClient client = AdminClient.create(admin.getConfig());
         NewTopic topic2 = new NewTopic("topic2", 3, (short) 3);
@@ -45,7 +69,7 @@ public class TestKafka {
 
 
     @Test
-    public void testTransaction(){
+    public void testTransaction() throws InterruptedException {
         Map map = new HashMap<>();
         map.put(KafkaHeaders.TOPIC,"topic3");
         map.put(KafkaHeaders.PARTITION_ID,0);
@@ -53,12 +77,14 @@ public class TestKafka {
         map.put(KafkaHeaders.TIMESTAMP,System.currentTimeMillis());
         MessageHeaders messageHeaders = new MessageHeaders(map);
         GenericMessage message = new GenericMessage("今天是个好日子", messageHeaders);
-        kafkaTemplate.send(message);
+        for (int i = 0; i < 1000; i++) {
+            kafkaTemplate.send(message);
+            Thread.sleep(2000l);
+        }
     }
 
 
     @Test
-
     public void testSendDefault(){
 //        /**
 //         * 使用sendDefault
@@ -66,7 +92,7 @@ public class TestKafka {
 //        defaultKafkaTemplate.sendDefault("123","321");
 
         Map map = new HashMap<>();
-        map.put(KafkaHeaders.TOPIC,"topic1");
+        map.put(KafkaHeaders.TOPIC,"topic3");
 //        map.put(KafkaHeaders.PARTITION_ID,0);
 //        map.put(KafkaHeaders.MESSAGE_KEY,"0");
 //        map.put(KafkaHeaders.TOPIC,"joe");

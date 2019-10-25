@@ -1,6 +1,8 @@
 package com.hiynn.spring.kafka.utils;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 /**
  * @ClassName MysqlDumpUntil
@@ -11,7 +13,7 @@ import java.io.*;
  */
 public class MysqlDumpUntil {
 
-    private static String[] importCommand(JdbcProperties properties) {
+    public static String[] importCommand(JdbcProperties properties) {
         //第一步，获取登录命令语句
         String loginCommand = String.format("mysql -h%s -u%s -p%s -P%s",
                 properties.getHost(),
@@ -45,7 +47,7 @@ public class MysqlDumpUntil {
 
 
 
-    private static String exportCommand(JdbcProperties properties) {
+    public static String exportCommand(JdbcProperties properties) {
         String exportCommand = String.format("cmd /k mysqldump -u%s -p%s -h%s -P%s %s -r %s",
                 properties.getUsername(),
                 properties.getPassword(),
@@ -59,9 +61,14 @@ public class MysqlDumpUntil {
     public static void export(JdbcProperties properties) throws IOException {
         String command = exportCommand(properties);
         Runtime runtime = Runtime.getRuntime();
-//        ProcessBuilder processBuilder = new ProcessBuilder(Arrays.asList(command));
-//        processBuilder.start();
-        Process process = runtime.exec(command);//这里简单一点异常我就直接往上抛
-
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.start();
+//        Process process = runtime.exec(command);
+//        try {
+//            int i = process.waitFor();
+//            System.err.println(i);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 }

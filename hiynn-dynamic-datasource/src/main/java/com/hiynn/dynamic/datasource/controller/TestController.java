@@ -98,8 +98,8 @@ public class TestController {
         return ResultBuilder.success(Arrays.asList(id, date));
     }
 
-    @PostMapping("/testJsonParam")
-    @ApiOperation(value = "测试json传参数", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
+    @PostMapping(value = "/testJsonParam")
+    @ApiOperation(value = "测试json传参数",produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
     public ResultBuilder<List<TUser>> testJsonParam(@Validated(value = GroupVaild.SaveGroup.class) @RequestBody UserDTO userDTO) {
         TUser user = TUser.builder().build();
         BeanUtils.copyProperties(userDTO, user);

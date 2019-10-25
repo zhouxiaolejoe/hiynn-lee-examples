@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiynn.spring.mybatis.plus.mapper.DynamicCreateTableMapper">
+    <update id="dynamicCreateTableMapperByList" parameterType="java.util.HashMap">
+        create table ${tableName} (
+        <foreach collection="list" item="sub" separator=",">
+            <trim suffixOverrides=" ">
+                <if test="sub.name != null and sub.name != '' ">
+                    ${sub.name}
+                </if>
+                <if test="sub.type != null and sub.type != '' ">
+                    ${sub.type}
+                </if>
+                <if test="sub.lengh != null and sub.lengh != '' ">
+                    (${sub.lengh})
+                </if>
+                <if test="sub.default != null and sub.default != '' ">
+                    DEFAULT #{sub.default}
+                </if>
+                <if test="sub.empty == '1'.toString() ">
+                    NOT NULL
+                </if>
+                <if test="sub.comment != null and sub.comment != '' ">
+                    COMMENT #{sub.comment}
+                </if>
+                <if test="sub.autoIncr == '0'.toString() ">
+                    AUTO_INCREMENT
+                </if>
+            </trim>
+        </foreach>
+        <foreach collection="list" item="sub" separator=",">
+            <trim suffixOverrides=" ">
+                <if test="sub.key == '0'.toString() ">
+                    , PRIMARY KEY (${sub.name}) USING BTREE
+                </if>
+            </trim>
+        </foreach>
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    </update>
+</mapper>

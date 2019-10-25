@@ -1,11 +1,22 @@
 server:
-  port: 8092
+  port: 9978
 spring:
+  redis:
+    database: 15
+    port: 6339
+    password: 123456
+    host: 10.0.92.127
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
   datasource:
     other:
       username: root
       password: 123456
-      jdbcUrl: jdbc:mysql://192.168.238.101:3306/test3?useUnicode=true&characterEncoding=utf-8
+      jdbcUrl: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8
       driver-class-name: com.mysql.cj.jdbc.Driver
   quartz:
     job-store-type: jdbc
@@ -32,10 +43,17 @@ spring:
           datasource:
             username: root
             password: 123456
-            jdbcUrl: jdbc:mysql://192.168.238.101:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
+            jdbcUrl: jdbc:mysql://localhost:3306/hiynn_quartz?useUnicode=true&characterEncoding=utf-8
             driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: test
 logging:
   config: classpath:logback-spring.xml
-
+task:
+  corePoolSize: 10
+  maxPoolSize: 200
+  queueCapacity: 10
+file:
+  base:
+    import-path: F:\activemq-ftp\import\
+    export-path: F:\activemq-ftp\export\

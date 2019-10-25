@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiynn.spring.mybatis.plus.mapper.DataSourceMapper">
+    <select id="selectDataConstructionByTableName" resultType="com.hiynn.spring.mybatis.plus.entity.DataConstruction">
+        SELECT
+            column_name,
+            column_comment,
+            data_type column_type,
+            column_type column_lengh
+        FROM
+            information_schema.COLUMNS
+        <where>
+            <if test="dataBase != null and dataBase != '' ">
+                AND table_schema = #{dataBase}
+            </if>
+            <if test="tableName != null and tableName != '' ">
+                AND table_name = #{tableName}
+            </if>
+        </where>
+    </select>
+    <select id="selectDataByTableName" resultType="java.util.Map">
+        select * from ${tableName} order by  id desc
+    </select>
+</mapper>
