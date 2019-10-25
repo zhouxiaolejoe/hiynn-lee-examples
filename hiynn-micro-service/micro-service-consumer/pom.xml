@@ -7,11 +7,12 @@
         <artifactId>hiynn-micro-service</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>com.hiynn.micro.service.producer</groupId>
-    <artifactId>micro-service-producer</artifactId>
+    <groupId>com.hiynn.micro.service.consumer</groupId>
+    <artifactId>micro-service-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>micro-service-producer</name>
+    <name>micro-service-consumer</name>
     <description>Demo project for Spring Boot</description>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
