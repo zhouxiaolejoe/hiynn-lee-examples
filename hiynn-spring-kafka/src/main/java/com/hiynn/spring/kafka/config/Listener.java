@@ -22,8 +22,7 @@ import java.util.concurrent.Executor;
  */
 @Slf4j
 @Component
-public class
-Listener {
+public class Listener {
     @Autowired
     KafkaTemplate kafkaTemplate;
 
