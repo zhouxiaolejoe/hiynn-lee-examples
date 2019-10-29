@@ -100,6 +100,10 @@ public class KafkaConfig {
         factory.setConcurrency(3);
         factory.getContainerProperties().setPollTimeout(3000);
         factory.setBatchListener(true);
+
+
+
+
         return factory;
     }
 
