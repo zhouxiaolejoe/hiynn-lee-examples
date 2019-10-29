@@ -131,4 +131,8 @@ public class TestController {
         log.info(FastJsonUtils.getBeanToJson(resultMap));
         return ResultBuilder.success(resultMap.get("result"));
     }
+
+    public static void main(String[] args) {
+        System.err.println("hello");
+    }
 }

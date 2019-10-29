@@ -37,7 +37,6 @@ public class TestServiceImpl implements TestService {
     @Transactional(rollbackFor = Exception.class)
     public void insertRole() {
         roleMapper.insertRole();
-        int i = 1 / 0;
     }
 
     @Override

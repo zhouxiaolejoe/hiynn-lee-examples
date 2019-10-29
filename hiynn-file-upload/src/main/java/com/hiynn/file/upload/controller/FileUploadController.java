@@ -26,7 +26,7 @@ public class FileUploadController {
     @PostMapping("/uploadFtp")
     public ResultBuilder uploadFtp(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
         FTPUtil ftpUtil = new FTPUtil();
-        ftpUtil.uploadLocalStream("dinging/",file,file.getOriginalFilename());
+        ftpUtil.uploadLocalStream("dinging/", file, file.getOriginalFilename());
         return ResultBuilder.success();
     }
 

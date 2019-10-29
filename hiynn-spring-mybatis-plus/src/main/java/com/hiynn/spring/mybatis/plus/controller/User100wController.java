@@ -41,6 +41,7 @@ public class User100wController {
     public String testPost1(@RequestParam("username")String username, @RequestParam("password")String password){
         System.err.println(username);
         System.err.println(password);
+
         return username;
     }
 
@@ -48,6 +49,7 @@ public class User100wController {
     @GetMapping(value = "/selectDataConstructionByTableName")
     public ResultBuilder selectDataConstructionByTableName(){
         List<DataConstruction> result = dataSourceService.selectDataConstructionByTableName("test", "datacenter-datamanager");
+
         return ResultBuilder.success(result);
     }
     @GetMapping(value = "/dynamicCreateTableMapperByList")
