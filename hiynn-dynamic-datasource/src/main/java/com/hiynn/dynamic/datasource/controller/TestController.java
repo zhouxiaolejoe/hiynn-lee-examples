@@ -23,9 +23,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 /**
  * @Description
@@ -132,7 +138,53 @@ public class TestController {
         return ResultBuilder.success(resultMap.get("result"));
     }
 
-    public static void main(String[] args) {
-        System.err.println("hello");
+
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+
+
+        FutureTask futureTask = new FutureTask(new MyJob());
+        new Thread(futureTask,"MyJob").start();
+        System.err.println(futureTask.get());
+//        try {
+//            System.err.println("start");
+//            String windowcmd = "cmd /c python datax.py C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\myjob.json";
+//            System.err.println(windowcmd);
+//            //.exec("你的命令",null,new File("datax安装路径"));
+//            Process pr = Runtime.getRuntime().exec(windowcmd,null,new File("C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\bin"));
+//            BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+//            String line = null;
+//            while ((line = in.readLine()) != null) {
+//                System.err.println(line);
+//            }
+//            in.close();
+//            pr.waitFor();
+//            System.err.println("end");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
+}
+
+
+class MyJob implements Callable{
+
+    @Override
+    public Object call() throws Exception {
+        System.err.println("start");
+        String windowcmd = "cmd /c python datax.py C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\myjob.json";
+        System.err.println(windowcmd);
+        //.exec("你的命令",null,new File("datax安装路径"));
+        Process pr = Runtime.getRuntime().exec(windowcmd,null,new File("C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\bin"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+        String line = null;
+        while ((line = in.readLine()) != null) {
+            System.err.println(line);
+        }
+        in.close();
+        pr.waitFor();
+        System.err.println("end");
+        return "end";
     }
 }

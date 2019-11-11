@@ -14,6 +14,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.hiynn.micro.service</groupId>
+            <artifactId>micro-service-producer-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>

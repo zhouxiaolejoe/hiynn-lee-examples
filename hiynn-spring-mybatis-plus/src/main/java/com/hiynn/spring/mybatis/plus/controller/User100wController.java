@@ -93,4 +93,13 @@ public class User100wController {
         map.put("tableName","new_table");
         return ResultBuilder.success(map);
     }
+
+//
+//    IDataSubscribeInfoService dataSubscribeInfoService;
+//    @GetMapping("/qwer")
+//    public DataSubscribeInfo getDataSubscribeInfo( ){
+//        DataSubscribeInfo byId = dataSubscribeInfoService.getById(3);
+//
+//        return byId;
+//    }
 }

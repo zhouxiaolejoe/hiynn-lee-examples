@@ -19,10 +19,10 @@ import java.util.List;
  
 public class CodeGenerator {
 
-    private static final String TABLE_NAME ="data_operate_log";
-    private static final String JDBC_URL ="jdbc:mysql://10.0.91.88:3306/datacenter_dataservice?useUnicode=true&useSSL=false&characterEncoding=utf8";
-    private static final String USER_NAME ="fangyuan";
-    private static final String PASSWORD ="1qazCDE#";
+    private static final String TABLE_NAME ="database_info";
+    private static final String JDBC_URL ="jdbc:mysql://10.0.91.85:3306/datacenter_zyml?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private static final String USER_NAME ="root";
+    private static final String PASSWORD ="hymysql";
     private static final String DRIVER_NAME ="com.mysql.cj.jdbc.Driver";
 
     /**
