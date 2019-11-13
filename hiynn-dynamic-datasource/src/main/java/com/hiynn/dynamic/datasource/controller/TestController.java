@@ -1,5 +1,6 @@
 package com.hiynn.dynamic.datasource.controller;
 
+import com.alibaba.datax.core.Engine;
 import com.hiynn.dynamic.datasource.dto.UserDTO;
 import com.hiynn.dynamic.datasource.dto.groupsvalid.GroupVaild;
 import com.hiynn.dynamic.datasource.entity.TRole;
@@ -23,12 +24,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -105,7 +103,7 @@ public class TestController {
     }
 
     @PostMapping(value = "/testJsonParam")
-    @ApiOperation(value = "测试json传参数",produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
+    @ApiOperation(value = "测试json传参数", produces = MediaType.APPLICATION_JSON_VALUE, httpMethod = "POST")
     public ResultBuilder<List<TUser>> testJsonParam(@Validated(value = GroupVaild.SaveGroup.class) @RequestBody UserDTO userDTO) {
         TUser user = TUser.builder().build();
         BeanUtils.copyProperties(userDTO, user);
@@ -139,14 +137,74 @@ public class TestController {
     }
 
 
-
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+        Map<String, Object> DataxJob = new HashMap<>(2);
+        List<Map<String, Object>> contentList = new ArrayList<>();
+        Map<String, Object> readerDB = new HashMap<>(2);
+        readerDB.put("name", "mysqlreader");
+        Map<String, Object> parameter = new HashMap<>(2);
+        parameter.put("username", "root");
+        parameter.put("password", "123456");
+        List<Object> column = Arrays.asList("id","first_name", "last_name", "sex", "score", "copy_id", "is_delete");
+        List<Object> connection = new ArrayList<>();
+        Map<String, Object> jdbcConnection = new HashMap<>(2);
+        jdbcConnection.put("jdbcUrl",Arrays.asList("jdbc:mysql://127.0.0.1:3306/test"));
+        jdbcConnection.put("table",Arrays.asList("user100w"));
+        connection.add(jdbcConnection);
+        parameter.put("column",column);
+        parameter.put("connection",connection);
+        readerDB.put("parameter",parameter);
+        Map<String, Object> readerAndWriterDB = new HashMap<>(2);
+        readerAndWriterDB.put("reader",readerDB);
+        contentList.add(readerAndWriterDB);
+        DataxJob.put("content",contentList);
+        Map<String, Object> writerDB = new HashMap<>(2);
+        Map<String, Object> writerParameter = new HashMap<>(2);
+        List<Object> writerColumn = Arrays.asList("id","first_name", "last_name", "sex", "score", "copy_id", "is_delete");
+        Map<String, Object> writerJdbcConnection = new HashMap<>(2);
+        writerJdbcConnection.put("jdbcUrl","jdbc:mysql://127.0.0.1:3306/test1");
+        writerJdbcConnection.put("table",Arrays.asList("user100w"));
+        writerParameter.put("connection",Arrays.asList(writerJdbcConnection));
+        writerParameter.put("password","123456");
+        writerParameter.put("username","root");
+        writerParameter.put("column",writerColumn);
+        writerParameter.put("preSql",Arrays.asList("truncate table user100w"));
+        writerDB.put("name","mysqlwriter");
+        writerDB.put("parameter",writerParameter);
+        readerAndWriterDB.put("writer",writerDB);
+        Map<String, Object> all = new HashMap<>(2);
+
+        Map<String, Object> setting = new HashMap<>(2);
+        Map<String, Object> speed = new HashMap<>(2);
+        Map<String, Object> errorLimit = new HashMap<>(2);
+        speed.put("byte",10485760);
+        errorLimit.put("record",0);
+        errorLimit.put("percentage",0.02);
+        setting.put("speed",speed);
+        setting.put("errorLimit",errorLimit);
+        DataxJob.put("setting",setting);
+        all.put("job",DataxJob);
+        System.err.println(FastJsonUtils.getBeanToJson(all));
+        try {
+            writeFile("C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\123.json",FastJsonUtils.getBeanToJson(all));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String filePath = "C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax";
+        String jsonPath = "C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\123.json";
+//        String jsonPath = FastJsonUtils.getBeanToJson(all);
+        try {
+            start(filePath,jsonPath);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
 
 
+//        FutureTask futureTask = new FutureTask(new MyJob());
+//        new Thread(futureTask,"MyJob").start();
+//        System.err.println(futureTask.get());
 
-        FutureTask futureTask = new FutureTask(new MyJob());
-        new Thread(futureTask,"MyJob").start();
-        System.err.println(futureTask.get());
+
 //        try {
 //            System.err.println("start");
 //            String windowcmd = "cmd /c python datax.py C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\myjob.json";
@@ -165,10 +223,27 @@ public class TestController {
 //            e.printStackTrace();
 //        }
     }
+    public static void writeFile(String filePath, String sets)
+            throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        PrintWriter out = new PrintWriter(fw);
+        out.write(sets);
+        out.println();
+        fw.close();
+        out.close();
+    }
+
+    public static void start(String dataxPath,String jsonPath) throws Throwable {
+        System.setProperty("datax.home", dataxPath);
+        System.setProperty("now", new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+        // 替换job中的占位符
+        String[] datxArgs = {"-job", jsonPath, "-mode", "standalone", "-jobid", "-1"};
+        Engine.entry(datxArgs);
+    }
 }
 
 
-class MyJob implements Callable{
+class MyJob implements Callable {
 
     @Override
     public Object call() throws Exception {
@@ -176,7 +251,7 @@ class MyJob implements Callable{
         String windowcmd = "cmd /c python datax.py C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\job\\myjob.json";
         System.err.println(windowcmd);
         //.exec("你的命令",null,new File("datax安装路径"));
-        Process pr = Runtime.getRuntime().exec(windowcmd,null,new File("C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\bin"));
+        Process pr = Runtime.getRuntime().exec(windowcmd, null, new File("C:\\Users\\Lenovo\\Downloads\\Compressed\\datax\\datax\\bin"));
         BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
         String line = null;
         while ((line = in.readLine()) != null) {

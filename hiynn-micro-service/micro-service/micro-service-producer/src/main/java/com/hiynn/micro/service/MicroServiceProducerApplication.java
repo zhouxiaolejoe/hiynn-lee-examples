@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /**
  * @author ZhouXiaoLe
  */
-@SpringBootApplication(scanBasePackages = {"com.hiynn.micro.service"})
+@SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients("com.hiynn")
 public class MicroServiceProducerApplication {

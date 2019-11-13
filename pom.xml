@@ -24,6 +24,7 @@
         <module>hiynn-spring-quartz</module>
         <module>hiynn-spring-mybatis-plus</module>
         <module>hiynn-spring-kafka</module>
+        <module>hiynn-micro-service</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
