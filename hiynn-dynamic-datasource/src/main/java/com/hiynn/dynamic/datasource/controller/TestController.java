@@ -1,6 +1,5 @@
 package com.hiynn.dynamic.datasource.controller;
 
-import com.alibaba.datax.core.Engine;
 import com.hiynn.dynamic.datasource.dto.UserDTO;
 import com.hiynn.dynamic.datasource.dto.groupsvalid.GroupVaild;
 import com.hiynn.dynamic.datasource.entity.TRole;
@@ -238,7 +237,7 @@ public class TestController {
         System.setProperty("now", new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
         // 替换job中的占位符
         String[] datxArgs = {"-job", jsonPath, "-mode", "standalone", "-jobid", "-1"};
-        Engine.entry(datxArgs);
+//        Engine.entry(datxArgs);
     }
 }
 

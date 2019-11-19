@@ -4,9 +4,9 @@ spring:
   application:
     name: hiynn-spring-mybatis-plus
   datasource:
-    url: jdbc:mysql://10.0.91.85:3306/datacenter_zyml?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.254.200:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: root
-    password: hymysql
+    password: 123456
 mybatis-plus:
   global-config:
     db-config:
